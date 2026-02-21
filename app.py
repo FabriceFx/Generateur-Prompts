@@ -45,91 +45,191 @@ def charger_donnees():
 logic_data, vision_data, video_data, audio_data = charger_donnees()
 
 
-# barre latérale pour la navigation
-st.sidebar.title("🧭 Navigation")
-page = st.sidebar.radio("Outil", [
-    "🏠 Accueil et guide", 
-    "📝 Générateur de texte", 
-    "📸 Générateur d'image",
-    "🎥 Générateur de vidéo",
-    "🎵 Générateur de musique"
-], label_visibility="collapsed")
-
-# Injection CSS
-st.markdown("""
-    <style>
-    /* Améliorations Mobile (évite le zoom iOS, ajuste padding) */
-    .stTextInput input, .stTextArea textarea, .stSelectbox select {
-        font-size: 16px !important;
+# ---------------------------------------------------------
+# GESTION DES LANGUES (Page Accueil Uniquement)
+# ---------------------------------------------------------
+HOME_TRANSLATIONS = {
+    'fr': {
+        'nav_home': '🏠 Accueil et guide', 'nav_text': '📝 Générateur de texte', 'nav_image': '📸 Générateur d\'image', 'nav_video': '🎥 Générateur de vidéo', 'nav_audio': '🎵 Générateur de musique',
+        'sidebar_lang': '🌐 Langue (Language)',
+        'sidebar_theme': '🎨 Thème',
+        'theme_light': '☀️ Clair', 'theme_dark': '🌙 Sombre',
+        'welcome_title': 'Bienvenue sur le générateur de prompts 🤖',
+        'why_structure_title': '💡 Pourquoi structurer ses prompts ?',
+        'why_desc': 'Communiquer avec une intelligence artificielle (ChatGPT, Claude, Gemini) demande de la précision. Un prompt brouillon donnera une réponse brouillonne.',
+        'benefit_1_title': '🎯 Cibler l\'expertise', 'benefit_1_desc': 'En donnant un rôle à l\'IA, elle mobilise le bon vocabulaire.',
+        'benefit_2_title': '🛡️ Réduire les hallucinations', 'benefit_2_desc': 'Plus le contexte est clair, moins l\'IA invente d\'informations.',
+        'benefit_3_title': '⏱️ Gagner du temps', 'benefit_3_desc': 'En imposant un format de sortie, vous n\'avez pas à reformuler.',
+        'card_text_title': '📝 Le générateur textuel',
+        'card_text_desc': 'Orientez l\'IA en choisissant un **métier**, une **mission** et un **format** de sortie (Tableau, Synthèse...).',
+        'card_img_vid_title': '📸 / 🎥 Le générateur visuel et vidéo',
+        'card_img_vid_desc': 'Définissez non seulement la scène, mais aussi les **mouvements de caméra**, le **framerate** et les **exclusions**.',
+        'card_audio_title': '🎵 Le générateur de musique',
+        'card_audio_desc': 'Gérérez des "tags" musicaux parfaits en paramétrant le **genre**, le **tempo** et les **voix**.',
+        'footer_start': '👈 Utilisez le menu de gauche pour démarrer la génération !'
+    },
+    'en': {
+        'nav_home': '🏠 Home & Guide', 'nav_text': '📝 Text Generator', 'nav_image': '📸 Image Generator', 'nav_video': '🎥 Video Generator', 'nav_audio': '🎵 Music Generator',
+        'sidebar_lang': '🌐 Language',
+        'sidebar_theme': '🎨 Theme',
+        'theme_light': '☀️ Light', 'theme_dark': '🌙 Dark',
+        'welcome_title': 'Welcome to the Prompt Generator 🤖',
+        'why_structure_title': '💡 Why structure your prompts?',
+        'why_desc': 'Communicating with an AI (ChatGPT, Claude, Gemini) requires precision. A messy prompt gives a messy answer.',
+        'benefit_1_title': '🎯 Target Expertise', 'benefit_1_desc': 'Assigning a role helps the AI use the right vocabulary.',
+        'benefit_2_title': '🛡️ Reduce Hallucinations', 'benefit_2_desc': 'A clear context stops the AI from inventing facts.',
+        'benefit_3_title': '⏱️ Save Time', 'benefit_3_desc': 'Force an output format so you don\'t have to rewrite it.',
+        'card_text_title': '📝 Text Generator',
+        'card_text_desc': 'Guide the AI by choosing a **profession**, a **mission**, and an **output format**.',
+        'card_img_vid_title': '📸 / 🎥 Image & Video Generator',
+        'card_img_vid_desc': 'Define the scene along with **camera motions**, **framerates**, and **negative prompts**.',
+        'card_audio_title': '🎵 Music Generator',
+        'card_audio_desc': 'Generate perfect musical "tags" by tweaking **genre**, **tempo**, and **vocals**.',
+        'footer_start': '👈 Use the left menu to start generating!'
+    },
+    'es': {
+        'nav_home': '🏠 Inicio y Guía', 'nav_text': '📝 Generador de Texto', 'nav_image': '📸 Generador de Imagen', 'nav_video': '🎥 Generador de Video', 'nav_audio': '🎵 Generador de Música',
+        'sidebar_lang': '🌐 Idioma (Language)',
+        'sidebar_theme': '🎨 Tema',
+        'theme_light': '☀️ Claro', 'theme_dark': '🌙 Oscuro',
+        'welcome_title': 'Bienvenido al Generador de Prompts 🤖',
+        'why_structure_title': '💡 ¿Por qué estructurar tus prompts?',
+        'why_desc': 'Comunicarse con una IA requiere precisión. Un prompt desordenado da una respuesta desordenada.',
+        'benefit_1_title': '🎯 Enfocar la Experiencia', 'benefit_1_desc': 'Asignar un rol ayuda a la IA a usar el vocabulario adecuado.',
+        'benefit_2_title': '🛡️ Evitar Alucinaciones', 'benefit_2_desc': 'Un contexto claro evita que la IA invente información.',
+        'benefit_3_title': '⏱️ Ahorrar Tiempo', 'benefit_3_desc': 'Imponga un formato de salida para no tener que reelaborarlo.',
+        'card_text_title': '📝 El Generador Textual',
+        'card_text_desc': 'Guía a la IA eligiendo una **profesión**, una **misión** y un **formato**.',
+        'card_img_vid_title': '📸 / 🎥 El Generador Visual',
+        'card_img_vid_desc': 'Define la escena junto con **movimientos de cámara**, **FPS** y **exclusiones**.',
+        'card_audio_title': '🎵 El Generador de Música',
+        'card_audio_desc': 'Genera etiquetas musicales perfilando el **género**, **tempo** y **voces**.',
+        'footer_start': '👈 ¡Usa el menú de la izquierda para comenzar!'
+    },
+    'de': {
+        'nav_home': '🏠 Start & Hilfe', 'nav_text': '📝 Text-Generator', 'nav_image': '📸 Bild-Generator', 'nav_video': '🎥 Video-Generator', 'nav_audio': '🎵 Musik-Generator',
+        'sidebar_lang': '🌐 Sprache (Language)',
+        'sidebar_theme': '🎨 Design',
+        'theme_light': '☀️ Hell', 'theme_dark': '🌙 Dunkel',
+        'welcome_title': 'Willkommen beim Prompt-Generator 🤖',
+        'why_structure_title': '💡 Warum Prompts strukturieren?',
+        'why_desc': 'Die Kommunikation mit KI erfordert Präzision. Ein chaotischer Prompt liefert eine chaotische Antwort.',
+        'benefit_1_title': '🎯 Expertise anvisieren', 'benefit_1_desc': 'Eine Rolle hilft der KI, das richtige Vokabular zu nutzen.',
+        'benefit_2_title': '🛡️ Halluzinationen reduzieren', 'benefit_2_desc': 'Klarer Kontext hindert die KI am Erfinden von Fakten.',
+        'benefit_3_title': '⏱️ Zeit sparen', 'benefit_3_desc': 'Geben Sie ein Format vor, um Nacharbeiten zu vermeiden.',
+        'card_text_title': '📝 Text-Generator',
+        'card_text_desc': 'Leiten Sie die KI an: Wählen Sie **Beruf**, **Mission** und **Format**.',
+        'card_img_vid_title': '📸 / 🎥 Bild- & Video-Generator',
+        'card_img_vid_desc': 'Definieren Sie Szenen mit **Kamerabewegungen**, **Framerate** und **Ausschlüssen**.',
+        'card_audio_title': '🎵 Musik-Generator',
+        'card_audio_desc': 'Erstellen Sie musikalische Tags per **Genre**, **Tempo** und **Stimmen**.',
+        'footer_start': '👈 Nutzen Sie das Menü links, um zu starten!'
     }
-    /* Ajout d'une touche de couleur aux titres */
-    h1 { color: #1e40af; }
-    h2, h3 { color: #3b82f6; }
+}
+
+# Initialisation de la session
+if 'lang' not in st.session_state:
+    st.session_state['lang'] = 'fr'
+if 'theme' not in st.session_state:
+    st.session_state['theme'] = 'light'
+
+# ---------------------------------------------------------
+# BARRE LATÉRALE (SIDEBAR) & STYLING DYNAMIQUE
+# ---------------------------------------------------------
+st.sidebar.title("🧭 Navigation")
+
+# Sélecteurs de configuration dans la sidebar (pour l'accueil)
+lang_options = {'fr': '🇫🇷 Français', 'en': '🇬🇧 English', 'es': '🇪🇸 Español', 'de': '🇩🇪 Deutsch'}
+t = HOME_TRANSLATIONS[st.session_state['lang']]
+
+st.sidebar.markdown("---")
+new_lang = st.sidebar.selectbox(t['sidebar_lang'], options=list(lang_options.keys()), format_func=lambda x: lang_options[x], index=list(lang_options.keys()).index(st.session_state['lang']))
+if new_lang != st.session_state['lang']:
+    st.session_state['lang'] = new_lang
+    st.rerun()
+
+theme_options = {'light': t['theme_light'], 'dark': t['theme_dark']}
+new_theme = st.sidebar.selectbox(t['sidebar_theme'], options=['light', 'dark'], format_func=lambda x: theme_options[x], index=0 if st.session_state['theme']=='light' else 1)
+if new_theme != st.session_state['theme']:
+    st.session_state['theme'] = new_theme
+    st.rerun()
+st.sidebar.markdown("---")
+
+# Navigation radio buttons
+page_labels = [t['nav_home'], t['nav_text'], t['nav_image'], t['nav_video'], t['nav_audio']]
+page_idx = st.sidebar.radio("Outil", range(len(page_labels)), format_func=lambda i: page_labels[i], label_visibility="collapsed")
+
+# Injection CSS pour gérér le thème clair/sombre forcé sur la page principale
+bg_color = "#ffffff" if st.session_state['theme'] == 'light' else "#1e1e1e"
+text_color = "#000000" if st.session_state['theme'] == 'light' else "#f3f4f6"
+container_bg = "#f9fafb" if st.session_state['theme'] == 'light' else "#2d3748"
+border_color = "#e5e7eb" if st.session_state['theme'] == 'light' else "#4a5568"
+
+st.markdown(f"""
+    <style>
+    /* Forcer le thème du conteneur principal */
+    .stApp {{
+        background-color: {bg_color};
+        color: {text_color};
+    }}
+    /* Style amélioré pour les blocs st.info et conteneurs pour aérer */
+    [data-testid="stVerticalBlockBorderWrapper"] {{
+        background-color: {container_bg} !important;
+        border-color: {border_color} !important;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+    }}
+    /* Améliorations Mobile */
+    .stTextInput input, .stTextArea textarea, .stSelectbox select {{
+        font-size: 16px !important;
+    }}
+    h1 {{ color: #2563eb; }}
+    h2, h3 {{ color: #3b82f6; }}
     </style>
 """, unsafe_allow_html=True)
 
-if page == "🏠 Accueil et guide":
-    st.title("Bienvenue sur le générateur de prompts 🤖")
+# ---------------------------------------------------------
+# CORPS DE LA PAGE
+# ---------------------------------------------------------
+if page_idx == 0:  # Accueil
+    st.title(t['welcome_title'])
     st.markdown("---")
     
-    st.header("💡 Pourquoi structurer ses prompts ?")
-    st.markdown("""
-    Communiquer avec une intelligence artificielle (comme ChatGPT, Claude, Gemini, Perplexity ou Mistral) demande de la précision. 
-    Un "prompt" (la requête que vous envoyez) brouillon donnera une réponse brouillonne.
+    st.header(t['why_structure_title'])
+    st.write(t['why_desc'])
     
-    **Un prompt bien structuré permet de :**
-    - **Cibler l'expertise :** En donnant un rôle à l'IA, elle mobilise le bon vocabulaire.
-    - **Éviter les hallucinations :** Plus le contexte est clair, moins l'IA invente d'informations.
-    - **Gagner du temps :** En imposant un format de sortie (tableau, synthèse, code), vous n'avez pas à reformuler la réponse.
-    """)
+    # 3 colonnes pour aérer la liste à puces "Pourquoi"
+    c1, c2, c3 = st.columns(3)
+    c1.info(f"**{t['benefit_1_title']}**\n\n{t['benefit_1_desc']}")
+    c2.success(f"**{t['benefit_2_title']}**\n\n{t['benefit_2_desc']}")
+    c3.warning(f"**{t['benefit_3_title']}**\n\n{t['benefit_3_desc']}")
     
-    st.markdown("---")
+    st.markdown("<br><br>", unsafe_allow_html=True) # Espacement vertical
     
-    col_g1, col_g2 = st.columns(2, gap="large")
+    col_g1, col_g2, col_g3 = st.columns(3, gap="large")
     
     with col_g1:
         with st.container(border=True):
-            st.subheader("📝 Le générateur textuel")
-            st.markdown("""
-            Cet outil est conçu pour les IA de texte (ChatGPT, Claude, Gemini, Perplexity, Mistral...). 
-            
-            **Comment l'utiliser ?**
-            1. **Choisissez un métier** (ex: Achats, Développement) pour orienter l'IA.
-            2. **Chargez un modèle** pré-existant ou créez votre prompt de zéro.
-            3. Remplissez la **mission** et le **contexte** pour détailler votre besoin.
-            4. Dépliez les options avancées pour imposer un ton (Professionnel, Amical) et un format (Tableau, Liste à puces).
-            5. Copiez le résultat généré et collez-le dans votre IA !
-            """)
+            st.subheader(t['card_text_title'])
+            st.write(t['card_text_desc'])
             
     with col_g2:
         with st.container(border=True):
-            st.subheader("📸 / 🎥 Le générateur visuel et vidéo")
-            st.markdown("""
-            Cet outil est conçu pour les générateurs d'images (Midjourney, DALL-E) et vidéos (Sora, Runway, Gemini).
-            
-            **Comment l'utiliser ?**
-            1. **Choisissez le style global** de l'image ou de la vidéo (Cinématique, Animation).
-            2. Décrivez avec vos mots la **scène principale**.
-            3. Paramétrez les aspects techniques (Type de lentille, éclairage, ou **mouvement de caméra**) dans les options avancées.
-            4. Utilisez les **exclusions** (Prompt négatif) pour indiquer ce que vous ne voulez *absolument pas* voir.
-            5. Le résultat technique généré peut être envoyé directement au moteur de rendu.
-            """)
-            
-        with st.container(border=True):
-            st.subheader("🎵 Le générateur de musique")
-            st.markdown("""
-            Cet outil est conçu pour les générateurs d'audio (Suno, Udio, Gemini).
-            
-            **Comment l'utiliser ?**
-            1. **Choisissez le genre musical** (Pop, Cinématique...).
-            2. Paramétrez le **tempo** et les **voix**.
-            3. L'outil structure une requête optimisée pour le générateur audio.
-            """)
-    
-    st.info("👈 Utilisez le menu de gauche pour démarrer la génération !")
+            st.subheader(t['card_img_vid_title'])
+            st.write(t['card_img_vid_desc'])
 
-elif page == "📝 Générateur de texte":
+    with col_g3:
+        with st.container(border=True):
+            st.subheader(t['card_audio_title'])
+            st.write(t['card_audio_desc'])
+    
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.success(t['footer_start'], icon="🚀")
+
+elif page_idx == 1:  # Générateur de Texte
     st.title("📝 Générateur textuel")
+
     st.markdown("Créez des prompts précis et efficaces pour vos IA textuelles (ChatGPT, Claude, Gemini, Perplexity, Mistral...).")
     
     if not logic_data:
@@ -209,7 +309,7 @@ elif page == "📝 Générateur de texte":
                 else:
                     st.info("👈 Remplissez le formulaire à gauche pour voir le prompt s'afficher ici.")
 
-elif page == "📸 Générateur d'image":
+elif page_idx == 2:  # Générateur Visuel
     st.title("📸 Générateur visuel")
     st.markdown("Paramétrez vos requêtes pour des IA génératives d'images (Midjourney, DALL-E, etc.).")
     
@@ -261,7 +361,7 @@ elif page == "📸 Générateur d'image":
                 st.json(output_data)
                 st.info("ℹ️ Ce format structuré peut être utilisé par vos scripts ou agents d'automatisation.")
 
-elif page == "🎥 Générateur de vidéo":
+elif page_idx == 3:  # Générateur de vidéo
     st.title("🎥 Générateur vidéo")
     st.markdown("Paramétrez vos requêtes pour des IA génératives de vidéos (Sora, Runway, Gemini, etc.).")
     
@@ -315,7 +415,7 @@ elif page == "🎥 Générateur de vidéo":
                 st.code(final_text, language="markdown")
                 st.caption("💡 Copiez cette ligne pour l'utiliser dans Runway ou Sora.")
 
-elif page == "🎵 Générateur de musique":
+elif page_idx == 4:  # Générateur de musique
     st.title("🎵 Générateur de musique")
     st.markdown("Structurez vos requêtes pour les IA musicales (Suno, Udio, Gemini, etc.).")
     
