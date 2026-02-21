@@ -160,18 +160,33 @@ page_labels = [t['nav_home'], t['nav_text'], t['nav_image'], t['nav_video'], t['
 page_idx = st.sidebar.radio("Outil", range(len(page_labels)), format_func=lambda i: page_labels[i], label_visibility="collapsed")
 
 # Injection CSS pour gérér le thème clair/sombre forcé sur la page principale
-bg_color = "#ffffff" if st.session_state['theme'] == 'light' else "#1e1e1e"
-text_color = "#000000" if st.session_state['theme'] == 'light' else "#f3f4f6"
-container_bg = "#f9fafb" if st.session_state['theme'] == 'light' else "#2d3748"
-border_color = "#e5e7eb" if st.session_state['theme'] == 'light' else "#4a5568"
+bg_color = "#ffffff" if st.session_state['theme'] == 'light' else "#0e1117"
+text_color = "#31333F" if st.session_state['theme'] == 'light' else "#fafafa"
+container_bg = "#f0f2f6" if st.session_state['theme'] == 'light' else "#262730"
+border_color = "#e6e9ef" if st.session_state['theme'] == 'light' else "#4a5568"
 
 st.markdown(f"""
     <style>
-    /* Forcer le thème du conteneur principal */
-    .stApp {{
-        background-color: {bg_color};
-        color: {text_color};
+    /* Forcer le thème du fond global */
+    .stApp, [data-testid="stAppViewContainer"] {{
+        background-color: {bg_color} !important;
     }}
+    [data-testid="stSidebar"] {{
+        background-color: {container_bg} !important;
+    }}
+    
+    /* Forcer la couleur de tous les textes généraux */
+    .stMarkdown, .stMarkdown p, .stMarkdown span, .stMarkdown li, label, .stRadio div, .stSelectbox div, .st-emotion-cache-1629p8f p {{
+        color: {text_color} !important;
+    }}
+    
+    /* Champs de saisie (inputs, textareas, selects) */
+    input, textarea, div[data-baseweb="select"] > div {{
+        background-color: {container_bg} !important;
+        color: {text_color} !important;
+        border: 1px solid {border_color} !important;
+    }}
+    
     /* Style amélioré pour les blocs st.info et conteneurs pour aérer */
     [data-testid="stVerticalBlockBorderWrapper"] {{
         background-color: {container_bg} !important;
@@ -180,12 +195,15 @@ st.markdown(f"""
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         padding: 10px;
     }}
+    
     /* Améliorations Mobile */
     .stTextInput input, .stTextArea textarea, .stSelectbox select {{
         font-size: 16px !important;
     }}
-    h1 {{ color: #2563eb; }}
-    h2, h3 {{ color: #3b82f6; }}
+    
+    /* Titres avec des teintes de base lues sur fond clair ou sombre */
+    h1 {{ color: #2563eb !important; }}
+    h2, h3 {{ color: #3b82f6 !important; }}
     </style>
 """, unsafe_allow_html=True)
 
