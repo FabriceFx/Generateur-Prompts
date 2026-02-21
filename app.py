@@ -34,7 +34,7 @@ logic_data, vision_data = charger_donnees()
 
 # barre latérale pour la navigation
 st.sidebar.title("🧭 Navigation")
-page = st.sidebar.radio("Outil", ["Générateur de Texte", "Générateur d'Image"], label_visibility="collapsed")
+page = st.sidebar.radio("Outil", ["🏠 Accueil & Guide", "📝 Générateur de Texte", "📸 Générateur d'Image"], label_visibility="collapsed")
 
 # Injection CSS
 st.markdown("""
@@ -49,7 +49,56 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-if page == "Générateur de Texte":
+if page == "🏠 Accueil & Guide":
+    st.title("Bienvenue sur le Générateur de Prompts 🤖")
+    st.markdown("---")
+    
+    st.header("💡 Pourquoi structurer ses prompts ?")
+    st.markdown("""
+    Communiquer avec une Intelligence Artificielle (comme ChatGPT, Claude ou Midjourney) demande de la précision. 
+    Un "prompt" (la requête que vous envoyez) brouillon donnera une réponse brouillonne.
+    
+    **Un prompt bien structuré permet de :**
+    - **Cibler l'expertise :** En donnant un rôle à l'IA, elle mobilise le bon vocabulaire.
+    - **Éviter les hallucinations :** Plus le contexte est clair, moins l'IA invente d'informations.
+    - **Gagner du temps :** En imposant un format de sortie (tableau, synthèse, code), vous n'avez pas à reformuler la réponse.
+    """)
+    
+    st.markdown("---")
+    
+    col_g1, col_g2 = st.columns(2, gap="large")
+    
+    with col_g1:
+        with st.container(border=True):
+            st.subheader("📝 Le Générateur Textuel")
+            st.markdown("""
+            Cet outil est conçu pour les IA de texte (ChatGPT, etc.). 
+            
+            **Comment l'utiliser ?**
+            1. **Choisissez un métier** (ex: Achats, Développement) pour orienter l'IA.
+            2. **Chargez un modèle** pré-existant ou créez votre prompt de zéro.
+            3. Remplissez la **Mission** et le **Contexte** pour détailler votre besoin.
+            4. Dépliez les options avancées pour imposer un ton (Professionnel, Amical) et un format (Tableau, Liste à puces).
+            5. Copiez le résultat généré et collez-le dans votre IA !
+            """)
+            
+    with col_g2:
+        with st.container(border=True):
+            st.subheader("📸 Le Générateur Visuel")
+            st.markdown("""
+            Cet outil est conçu pour les générateurs d'images (Midjourney, DALL-E, Stable Diffusion).
+            
+            **Comment l'utiliser ?**
+            1. **Choisissez le style global** de l'image (Portrait humain, Paysage).
+            2. Décrivez avec vos mots la **scène principale**.
+            3. Paramétrez les aspects techniques (Type de lentille, éclairage, âge du sujet) dans les options avancées.
+            4. Utilisez les **Exclusions** (Prompt Négatif) pour indiquer ce que vous ne voulez *absolument pas* voir.
+            5. Le résultat technique généré peut être envoyé directement au moteur de rendu.
+            """)
+    
+    st.info("👈 Utilisez le menu de gauche pour démarrer la génération !")
+
+elif page == "📝 Générateur de Texte":
     st.title("📝 Générateur Textuel")
     st.markdown("Créez des prompts précis et efficaces pour vos IA textuelles (ChatGPT, Claude, etc.).")
     
