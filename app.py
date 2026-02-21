@@ -180,6 +180,11 @@ st.markdown(f"""
         color: {text_color} !important;
     }}
     
+    /* Forcer la couleur du texte dans les blocs d'alerte (info, success, warning) */
+    [data-testid="stAlert"] *, [data-testid="stAlert"] p, [data-testid="stAlert"] span {{
+        color: {text_color} !important;
+    }}
+    
     /* Champs de saisie (inputs, textareas, selects) */
     input, textarea, div[data-baseweb="select"] > div {{
         background-color: {container_bg} !important;
