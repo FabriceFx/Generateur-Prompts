@@ -169,8 +169,8 @@ st.markdown(f"""
     /* Import de la police Google Sans (remplacée par Roboto si indispo) */
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
     
-    html, body, [class*="st-"] {{
-        font-family: 'Roboto', sans-serif !important;
+    html, body, p, h1, h2, h3, h4, h5, h6, label, input, textarea, button, li {{
+        font-family: 'Roboto', sans-serif;
     }}
 
     /* Fond Global */
