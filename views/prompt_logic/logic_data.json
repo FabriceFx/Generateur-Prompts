@@ -1,0 +1,151 @@
+{
+    "achat": {
+        "category": "gestion",
+        "theme": {
+            "primary": "#4338ca",
+            "surface": "#eef2ff"
+        },
+        "icon": "fa-cart-shopping",
+        "translations": {
+            "fr": {
+                "title": "Achats"
+            },
+            "en": {
+                "title": "Purchasing"
+            }
+        },
+        "options": {
+            "tones": [
+                {
+                    "val": "professional",
+                    "label": {
+                        "fr": "Professionnel",
+                        "en": "Professional"
+                    }
+                },
+                {
+                    "val": "empathetic",
+                    "label": {
+                        "fr": "Bienveillant & Empathique",
+                        "en": "Empathetic"
+                    }
+                },
+                {
+                    "val": "friendly",
+                    "label": {
+                        "fr": "Amical & Sympa",
+                        "en": "Friendly"
+                    }
+                }
+            ],
+            "formats": [
+                {
+                    "val": "text",
+                    "label": {
+                        "fr": "Texte libre",
+                        "en": "Free Text"
+                    }
+                },
+                {
+                    "val": "bullet",
+                    "label": {
+                        "fr": "Liste à puces",
+                        "en": "Bullet Points"
+                    }
+                },
+                {
+                    "val": "table",
+                    "label": {
+                        "fr": "Tableau",
+                        "en": "Table"
+                    }
+                }
+            ]
+        },
+        "templates": {
+            "rfp_draft": {
+                "fr": {
+                    "name": "Appel d'offres (RFP)",
+                    "role": "Acheteur",
+                    "task": "Cahier des charges.",
+                    "context": "Prestation maintenance.",
+                    "tone": "professional",
+                    "format": "bullet",
+                    "constraints": "SLA précis.",
+                    "instructions": [
+                        "Périmètre.",
+                        "Critères sélection.",
+                        "Certifications."
+                    ]
+                }
+            }
+        }
+    },
+    "dev": {
+        "category": "tech",
+        "theme": {
+            "primary": "#6366f1",
+            "surface": "#eef2ff"
+        },
+        "icon": "fa-code",
+        "translations": {
+            "fr": {
+                "title": "Développeur"
+            },
+            "en": {
+                "title": "Developer"
+            }
+        },
+        "options": {
+            "tones": [
+                {
+                    "val": "technical",
+                    "label": {
+                        "fr": "Technique",
+                        "en": "Technical"
+                    }
+                },
+                {
+                    "val": "pedagogic",
+                    "label": {
+                        "fr": "Pédagogique (Enseignant)",
+                        "en": "Pedagogic"
+                    }
+                }
+            ],
+            "formats": [
+                {
+                    "val": "code",
+                    "label": {
+                        "fr": "Bloc de Code",
+                        "en": "Code Block"
+                    }
+                },
+                {
+                    "val": "markdown",
+                    "label": {
+                        "fr": "Markdown",
+                        "en": "Markdown"
+                    }
+                }
+            ]
+        },
+        "templates": {
+            "code_explain": {
+                "fr": {
+                    "name": "Expliquer ce code",
+                    "role": "Lead Dev",
+                    "task": "Expliquer le snippet ligne par ligne.",
+                    "context": "Code legacy.",
+                    "tone": "pedagogic",
+                    "format": "text",
+                    "instructions": [
+                        "Pattern utilisé.",
+                        "Fonctions clés.",
+                        "Risques."
+                    ]
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,114 @@
+{
+    "ui_translations": {
+        "fr": {
+            "app_title": "PromptVision",
+            "concept": "📝 Concept global",
+            "subject": "Sujet principal",
+            "negative": "🚫 Prompt négatif"
+        }
+    },
+    "modes": {
+        "portrait": {
+            "translations": {
+                "fr": "Portrait Humain",
+                "en": "Human Portrait"
+            },
+            "icon": "fa-user-circle",
+            "theme": {
+                "primary": "#2563eb",
+                "surface": "#eff6ff"
+            },
+            "fields": [
+                {
+                    "id": "archetype",
+                    "label": {
+                        "fr": "Archétype / Genre",
+                        "en": "Archetype"
+                    },
+                    "options": [
+                        {
+                            "val": "Female model",
+                            "label": {
+                                "fr": "Femme",
+                                "en": "Female"
+                            }
+                        },
+                        {
+                            "val": "Male model",
+                            "label": {
+                                "fr": "Homme",
+                                "en": "Male"
+                            }
+                        },
+                        {
+                            "val": "Cybernetic Cyborg",
+                            "label": {
+                                "fr": "Cyborg",
+                                "en": "Cyborg"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "age",
+                    "label": {
+                        "fr": "Âge",
+                        "en": "Age"
+                    },
+                    "options": [
+                        {
+                            "val": "Young adult, 20s",
+                            "label": {
+                                "fr": "Jeune Adulte (20s)",
+                                "en": "Young Adult"
+                            }
+                        },
+                        {
+                            "val": "Adult, 30s",
+                            "label": {
+                                "fr": "Adulte (30s)",
+                                "en": "Adult"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "landscape": {
+            "translations": {
+                "fr": "Paysage & Architecture",
+                "en": "Landscape & Architecture"
+            },
+            "icon": "fa-mountain",
+            "theme": {
+                "primary": "#16a34a",
+                "surface": "#f0fdf4"
+            },
+            "fields": [
+                {
+                    "id": "biome",
+                    "label": {
+                        "fr": "Type de Lieu / Biome",
+                        "en": "Type / Biome"
+                    },
+                    "options": [
+                        {
+                            "val": "Alpine Mountains",
+                            "label": {
+                                "fr": "Montagnes Alpines",
+                                "en": "Mountains"
+                            }
+                        },
+                        {
+                            "val": "Cyberpunk Metropolis",
+                            "label": {
+                                "fr": "Ville Cyberpunk",
+                                "en": "Cyberpunk City"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
