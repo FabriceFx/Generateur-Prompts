@@ -34,7 +34,7 @@ logic_data, vision_data = charger_donnees()
 
 # barre latérale pour la navigation
 st.sidebar.title("🧭 Navigation")
-page = st.sidebar.radio("Outil", ["🏠 Accueil & Guide", "📝 Générateur de Texte", "📸 Générateur d'Image"], label_visibility="collapsed")
+page = st.sidebar.radio("Outil", ["🏠 Accueil et guide", "📝 Générateur de texte", "📸 Générateur d'image"], label_visibility="collapsed")
 
 # Injection CSS
 st.markdown("""
@@ -49,13 +49,13 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-if page == "🏠 Accueil & Guide":
-    st.title("Bienvenue sur le Générateur de Prompts 🤖")
+if page == "🏠 Accueil et guide":
+    st.title("Bienvenue sur le générateur de prompts 🤖")
     st.markdown("---")
     
     st.header("💡 Pourquoi structurer ses prompts ?")
     st.markdown("""
-    Communiquer avec une Intelligence Artificielle (comme ChatGPT, Claude ou Midjourney) demande de la précision. 
+    Communiquer avec une intelligence artificielle (comme ChatGPT, Claude ou Midjourney) demande de la précision. 
     Un "prompt" (la requête que vous envoyez) brouillon donnera une réponse brouillonne.
     
     **Un prompt bien structuré permet de :**
@@ -70,21 +70,21 @@ if page == "🏠 Accueil & Guide":
     
     with col_g1:
         with st.container(border=True):
-            st.subheader("📝 Le Générateur Textuel")
+            st.subheader("📝 Le générateur textuel")
             st.markdown("""
             Cet outil est conçu pour les IA de texte (ChatGPT, etc.). 
             
             **Comment l'utiliser ?**
             1. **Choisissez un métier** (ex: Achats, Développement) pour orienter l'IA.
             2. **Chargez un modèle** pré-existant ou créez votre prompt de zéro.
-            3. Remplissez la **Mission** et le **Contexte** pour détailler votre besoin.
+            3. Remplissez la **mission** et le **contexte** pour détailler votre besoin.
             4. Dépliez les options avancées pour imposer un ton (Professionnel, Amical) et un format (Tableau, Liste à puces).
             5. Copiez le résultat généré et collez-le dans votre IA !
             """)
             
     with col_g2:
         with st.container(border=True):
-            st.subheader("📸 Le Générateur Visuel")
+            st.subheader("📸 Le générateur visuel")
             st.markdown("""
             Cet outil est conçu pour les générateurs d'images (Midjourney, DALL-E, Stable Diffusion).
             
@@ -92,14 +92,14 @@ if page == "🏠 Accueil & Guide":
             1. **Choisissez le style global** de l'image (Portrait humain, Paysage).
             2. Décrivez avec vos mots la **scène principale**.
             3. Paramétrez les aspects techniques (Type de lentille, éclairage, âge du sujet) dans les options avancées.
-            4. Utilisez les **Exclusions** (Prompt Négatif) pour indiquer ce que vous ne voulez *absolument pas* voir.
+            4. Utilisez les **exclusions** (Prompt négatif) pour indiquer ce que vous ne voulez *absolument pas* voir.
             5. Le résultat technique généré peut être envoyé directement au moteur de rendu.
             """)
     
     st.info("👈 Utilisez le menu de gauche pour démarrer la génération !")
 
-elif page == "📝 Générateur de Texte":
-    st.title("📝 Générateur Textuel")
+elif page == "📝 Générateur de texte":
+    st.title("📝 Générateur textuel")
     st.markdown("Créez des prompts précis et efficaces pour vos IA textuelles (ChatGPT, Claude, etc.).")
     
     if not logic_data:
@@ -135,12 +135,12 @@ elif page == "📝 Générateur de Texte":
                             break
             
             with st.container(border=True):
-                st.subheader("✍️ Contenu du Prompt")
+                st.subheader("✍️ Contenu du prompt")
                 role = st.text_input("Rôle (Agis en tant que...)", value=initial_values.get('role', ''))
                 task = st.text_area("Mission principale", value=initial_values.get('task', ''), height=100)
-                context = st.text_area("Contexte & Détails", value=initial_values.get('context', ''), height=100)
+                context = st.text_area("Contexte et détails", value=initial_values.get('context', ''), height=100)
                 
-                with st.expander("Options Avancées (Ton, Format)"):
+                with st.expander("Options avancées (ton, format)"):
                     c_a, c_b = st.columns(2)
                     with c_a:
                         tones = [t['label']['fr'] for t in job['options']['tones']]
@@ -179,8 +179,8 @@ elif page == "📝 Générateur de Texte":
                 else:
                     st.info("👈 Remplissez le formulaire à gauche pour voir le prompt s'afficher ici.")
 
-elif page == "Générateur d'Image":
-    st.title("📸 Générateur Visuel")
+elif page == "📸 Générateur d'image":
+    st.title("📸 Générateur visuel")
     st.markdown("Paramétrez vos requêtes pour des IA génératives d'images (Midjourney, DALL-E, etc.).")
     
     if not vision_data:
@@ -194,14 +194,14 @@ elif page == "Générateur d'Image":
                 
                 modes = vision_data.get('modes', {})
                 mode_id = st.selectbox(
-                    "Style de l'image / Catégorie", 
+                    "Style de l'image ou catégorie", 
                     list(modes.keys()), 
                     format_func=lambda x: modes[x]['translations']['fr']
                 )
                 
                 concept = st.text_area("Description de la scène", placeholder="Ex : Un chat lisant un livre dans l'espace...")
                 
-                with st.expander("Détails & Styles Spécifiques", expanded=True):
+                with st.expander("Détails et styles spécifiques", expanded=True):
                     # génération dynamique des champs selon le json
                     fields = modes[mode_id].get('fields', [])
                     selections = {}
@@ -213,12 +213,12 @@ elif page == "Générateur d'Image":
                         val_technique = next(opt['val'] for opt in field['options'] if opt['label']['fr'] == choice)
                         selections[field['id']] = val_technique
                         
-                with st.expander("Exclusions (Prompt Négatif)"):
+                with st.expander("Exclusions (prompt négatif)"):
                     neg_prompt = st.text_input("Éléments à exclure", value="blur, low quality, distorted, bad anatomy")
 
         with col_v2:
             with st.container(border=True):
-                st.subheader("📋 Résultat Technique")
+                st.subheader("📋 Résultat technique")
                 
                 # création de la structure de sortie harmonisée
                 output_data = {
