@@ -547,6 +547,11 @@ elif page_idx == 4:  # Générateur de musique
                         if choice != "-- Sélectionner --":
                             val_technique = next(opt['val'] for opt in field['options'] if opt['label']['fr'] == choice)
                             selections[field['id']] = val_technique
+                
+                with st.expander("Détails avancés (Optionnel)"):
+                    tonalite = st.text_input("Tonalité (ex: C minor, Do Majeur)")
+                    langue = st.text_input("Langue des paroles (ex: Français, English)")
+                    influence = st.text_input("Influence Artiste ou Lien (ex: Daft Punk, ou lien Spotify/Deezer)")
 
         with col_a2:
             with st.container(border=True):
@@ -556,6 +561,13 @@ elif page_idx == 4:  # Générateur de musique
                 prompt_parts.append(f"[Genre] {genre_id}")
                 for k, v in selections.items():
                     prompt_parts.append(f"[{k.capitalize()}] {v}")
+                
+                if tonalite:
+                    prompt_parts.append(f"[Key] {tonalite}")
+                if langue:
+                    prompt_parts.append(f"[Language] {langue}")
+                if influence:
+                    prompt_parts.append(f"[Influence] Style of {influence}")
                 
                 if concept:
                     prompt_parts.append(f"\n{concept}")
