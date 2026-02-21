@@ -158,56 +158,92 @@ st.sidebar.markdown("---")
 page_labels = [t['nav_home'], t['nav_text'], t['nav_image'], t['nav_video'], t['nav_audio']]
 page_idx = st.sidebar.radio("Outil", range(len(page_labels)), format_func=lambda i: page_labels[i], label_visibility="collapsed")
 
-# Injection CSS pour gérér le thème clair/sombre forcé sur la page principale
-bg_color = "#ffffff" if st.session_state['theme'] == 'light' else "#0e1117"
-text_color = "#31333F" if st.session_state['theme'] == 'light' else "#fafafa"
-container_bg = "#f0f2f6" if st.session_state['theme'] == 'light' else "#262730"
-border_color = "#e6e9ef" if st.session_state['theme'] == 'light' else "#4a5568"
+# Injection CSS pour le thème Material Design 4
+bg_color = "#FAFAFA" if st.session_state['theme'] == 'light' else "#141218"
+text_color = "#1D1B20" if st.session_state['theme'] == 'light' else "#E6E0E9"
+container_bg = "#FFFFFF" if st.session_state['theme'] == 'light' else "#2B2930"
+sidebar_bg = "#F3EDF7" if st.session_state['theme'] == 'light' else "#2B2930"
 
 st.markdown(f"""
     <style>
-    /* Forcer le thème du fond global */
+    /* Import de la police Google Sans (remplacée par Roboto si indispo) */
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+    
+    html, body, [class*="st-"] {{
+        font-family: 'Roboto', sans-serif !important;
+    }}
+
+    /* Fond Global */
     .stApp, [data-testid="stAppViewContainer"] {{
         background-color: {bg_color} !important;
-    }}
-    [data-testid="stSidebar"] {{
-        background-color: {container_bg} !important;
+        color: {text_color} !important;
     }}
     
-    /* Forcer la couleur de tous les textes généraux */
+    /* Sidebar */
+    [data-testid="stSidebar"] {{
+        background-color: {sidebar_bg} !important;
+        border-right: none !important;
+    }}
+
+    /* Typographie Générale */
     .stMarkdown, .stMarkdown p, .stMarkdown span, .stMarkdown li, label, .stRadio div, .stSelectbox div, .st-emotion-cache-1629p8f p {{
         color: {text_color} !important;
     }}
     
-    /* Forcer la couleur du texte dans les blocs d'alerte (info, success, warning) */
+    h1, h2, h3 {{ color: #0A56D1 !important; font-weight: 500 !important; }}
+
+    /* Alertes (Info, Success, Warning) */
     [data-testid="stAlert"] *, [data-testid="stAlert"] p, [data-testid="stAlert"] span {{
         color: {text_color} !important;
     }}
-    
-    /* Champs de saisie (inputs, textareas, selects) */
-    input, textarea, div[data-baseweb="select"] > div {{
+
+    /* Cartes et Conteneurs (Elevation 1) */
+    [data-testid="stVerticalBlockBorderWrapper"] > div {{
         background-color: {container_bg} !important;
+        border: none !important;
+        border-radius: 24px !important;
+        padding: 1rem !important;
+        box-shadow: 0 1px 3px 0 rgba(0,0,0,0.12), 0 1px 2px 0 rgba(0,0,0,0.24) !important;
+        transition: box-shadow 0.3s cubic-bezier(.25,.8,.25,1);
+    }}
+    [data-testid="stVerticalBlockBorderWrapper"] > div:hover {{
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.15), 0 4px 6px 0 rgba(0,0,0,0.20) !important;
+    }}
+
+    /* Champs de Saisie (Filled Variant) */
+    input[type="text"], input[type="number"], textarea, div[data-baseweb="select"] > div {{
+        background-color: {"rgba(10, 86, 209, 0.04)" if st.session_state['theme'] == 'light' else "rgba(208, 188, 255, 0.08)"} !important;
         color: {text_color} !important;
-        border: 1px solid {border_color} !important;
+        border: 1px solid transparent !important;
+        border-bottom: 1px solid #79747E !important;
+        border-radius: 4px 4px 0 0 !important;
     }}
-    
-    /* Style amélioré pour les blocs st.info et conteneurs pour aérer */
-    [data-testid="stVerticalBlockBorderWrapper"] {{
-        background-color: {container_bg} !important;
-        border-color: {border_color} !important;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        padding: 10px;
+    input:focus, textarea:focus, div[data-baseweb="select"] > div:focus-within {{
+        border-bottom: 2px solid #0A56D1 !important;
+        background-color: {"rgba(10, 86, 209, 0.08)" if st.session_state['theme'] == 'light' else "rgba(208, 188, 255, 0.12)"} !important;
     }}
-    
-    /* Améliorations Mobile */
-    .stTextInput input, .stTextArea textarea, .stSelectbox select {{
-        font-size: 16px !important;
+
+    /* Boutons (Pilled/Tonal variant) */
+    button[kind="primary"], button[kind="secondary"] {{
+        border-radius: 100px !important;
+        text-transform: none !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.1px !important;
+        padding: 10px 24px !important;
+        border: none !important;
+        background-color: #0A56D1 !important;
+        color: white !important;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.3) !important;
+        transition: all 0.2s ease-in-out !important;
     }}
-    
-    /* Titres avec des teintes de base lues sur fond clair ou sombre */
-    h1 {{ color: #2563eb !important; }}
-    h2, h3 {{ color: #3b82f6 !important; }}
+    button[kind="secondary"] {{
+        background-color: {sidebar_bg} !important;
+        color: #0A56D1 !important;
+    }}
+    button[kind="primary"]:hover, button[kind="secondary"]:hover {{
+        box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 8px rgba(0,0,0,0.15) !important;
+        transform: translateY(-1px);
+    }}
     </style>
 """, unsafe_allow_html=True)
 

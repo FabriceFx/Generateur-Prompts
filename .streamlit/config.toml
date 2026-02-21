@@ -1,0 +1,7 @@
+[theme]
+# Couleurs principales Material Design 4
+primaryColor = "#0A56D1" # Bleu Material type
+backgroundColor = "#FAFAFA"
+secondaryBackgroundColor = "#F0F4F8"
+textColor = "#1D1B20"
+font = "sans serif"
