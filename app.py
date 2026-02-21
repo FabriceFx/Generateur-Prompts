@@ -293,6 +293,9 @@ elif page_idx == 1:  # Générateur de Texte
                 task = st.text_area("Mission principale", value=initial_values.get('task', ''), height=100)
                 context = st.text_area("Contexte et détails", value=initial_values.get('context', ''), height=100)
                 
+                example = st.text_area("Exemple attendu (Few-Shot)", value=initial_values.get('example', ''), height=100)
+                instructions = st.text_area("Instructions spécifiques", value=initial_values.get('instructions', ''), height=100)
+                
                 with st.expander("Options avancées (ton, format)"):
                     c_a, c_b = st.columns(2)
                     with c_a:
@@ -303,6 +306,10 @@ elif page_idx == 1:  # Générateur de Texte
                         format_out = st.selectbox("Format attendu", formats)
                         
                     constraints = st.text_input("Contraintes additionnelles", value=initial_values.get('constraints', ''))
+                    
+                with st.expander("Méthodologie IA"):
+                    interactive = st.checkbox("Mode Interactif (Demander de poser des questions d'abord)")
+                    cot = st.checkbox("Réflexion par étapes (Chain of Thought)")
 
         with col2:
             with st.container(border=True):
@@ -318,11 +325,33 @@ elif page_idx == 1:  # Générateur de Texte
                 if context:
                     prompt_parts.append(f"### CONTEXTE\n{context}\n")
                 
-                if tone or format_out or constraints:
-                    prompt_parts.append(f"### PARAMÈTRES DE SORTIE")
-                    if tone: prompt_parts.append(f"- Ton : {tone}")
-                    if format_out: prompt_parts.append(f"- Format : {format_out}")
-                    if constraints: prompt_parts.append(f"- Contraintes : {constraints}")
+                if example:
+                    prompt_parts.append(f"### EXEMPLE ATTENDU\nVoici un exemple pour guider ta réponse :\n\"\"\"\n{example}\n\"\"\"\n")
+                
+                criteria = []
+                if tone: criteria.append(f"- Ton : {tone}")
+                if format_out: criteria.append(f"- Format : {format_out}")
+                if constraints: criteria.append(f"- Contraintes : {constraints}")
+                
+                if instructions:
+                    for line in instructions.split('\n'):
+                        if line.strip():
+                            if not line.strip().startswith('-') and not line.strip().startswith('•'):
+                                criteria.append(f"- {line.strip()}")
+                            else:
+                                criteria.append(line.strip())
+                
+                if criteria:
+                    prompt_parts.append(f"### INSTRUCTIONS & CRITÈRES\nRespecte impérativement ces points :")
+                    prompt_parts.append("\n".join(criteria) + "\n")
+                    
+                if interactive or cot:
+                    prompt_parts.append(f"### MÉTHODOLOGIE")
+                    if interactive:
+                        prompt_parts.append("⚠️ AVANT de répondre, pose-moi 2 ou 3 questions courtes pour clarifier ma demande.")
+                    if cot:
+                        prompt_parts.append("🧠 Réfléchis étape par étape (Chain of Thought).")
+
                 
                 final_text = "\n".join(prompt_parts)
                 
@@ -356,15 +385,28 @@ elif page_idx == 2:  # Générateur Visuel
                 
                 with st.expander("Détails et styles spécifiques", expanded=True):
                     # génération dynamique des champs selon le json
-                    fields = modes[mode_id].get('fields', [])
+                    fields = list(modes[mode_id].get('fields', []))
+                    
+                    # Ajouter les champs communs (action, scene, camera) si applicables
+                    groups = modes[mode_id].get('groups', [])
+                    common_data = vision_data.get('common', {})
+                    for group in groups:
+                        if group in common_data:
+                            fields.extend(common_data[group])
+                    
                     selections = {}
                     
                     for field in fields:
-                        options_labels = [opt['label']['fr'] for opt in field['options']]
-                        choice = st.selectbox(field['label']['fr'], options_labels)
-                        # récupération de la valeur technique associée au label
-                        val_technique = next(opt['val'] for opt in field['options'] if opt['label']['fr'] == choice)
-                        selections[field['id']] = val_technique
+                        if field.get('type') == 'text':
+                            choice = st.text_input(field['label']['fr'], value=field.get('default', ''))
+                            if choice:
+                                selections[field['id']] = choice
+                        else:
+                            options_labels = [opt['label']['fr'] for opt in field['options']]
+                            choice = st.selectbox(field['label']['fr'], ["-- Sélectionner --"] + options_labels)
+                            if choice != "-- Sélectionner --":
+                                val_technique = next(opt['val'] for opt in field['options'] if opt['label']['fr'] == choice)
+                                selections[field['id']] = val_technique
                         
                 with st.expander("Exclusions (prompt négatif)"):
                     neg_prompt = st.text_input("Éléments à exclure", value="blur, low quality, distorted, bad anatomy")

@@ -1,151 +1,759 @@
 {
-    "achat": {
-        "category": "gestion",
-        "theme": {
-            "primary": "#4338ca",
-            "surface": "#eef2ff"
-        },
-        "icon": "fa-cart-shopping",
-        "translations": {
-            "fr": {
-                "title": "Achats"
-            },
-            "en": {
-                "title": "Purchasing"
-            }
-        },
-        "options": {
-            "tones": [
-                {
-                    "val": "professional",
-                    "label": {
-                        "fr": "Professionnel",
-                        "en": "Professional"
-                    }
-                },
-                {
-                    "val": "empathetic",
-                    "label": {
-                        "fr": "Bienveillant & Empathique",
-                        "en": "Empathetic"
-                    }
-                },
-                {
-                    "val": "friendly",
-                    "label": {
-                        "fr": "Amical & Sympa",
-                        "en": "Friendly"
-                    }
-                }
-            ],
-            "formats": [
-                {
-                    "val": "text",
-                    "label": {
-                        "fr": "Texte libre",
-                        "en": "Free Text"
-                    }
-                },
-                {
-                    "val": "bullet",
-                    "label": {
-                        "fr": "Liste à puces",
-                        "en": "Bullet Points"
-                    }
-                },
-                {
-                    "val": "table",
-                    "label": {
-                        "fr": "Tableau",
-                        "en": "Table"
-                    }
-                }
-            ]
-        },
-        "templates": {
-            "rfp_draft": {
-                "fr": {
-                    "name": "Appel d'offres (RFP)",
-                    "role": "Acheteur",
-                    "task": "Cahier des charges.",
-                    "context": "Prestation maintenance.",
-                    "tone": "professional",
-                    "format": "bullet",
-                    "constraints": "SLA précis.",
-                    "instructions": [
-                        "Périmètre.",
-                        "Critères sélection.",
-                        "Certifications."
-                    ]
-                }
-            }
-        }
+  "production": {
+    "category": "industriel",
+    "theme": { "primary": "#045973", "surface": "#f0f9ff" },
+    "icon": "fa-industry",
+    "translations": { "fr": { "title": "Production & Transformation" } },
+    "options": {
+      "tones": [
+        { "val": "direct", "label": { "fr": "Direct & Factuel" } },
+        { "val": "security", "label": { "fr": "Axé Sécurité" } },
+        { "val": "urgent", "label": { "fr": "Urgent & Alerte" } },
+        { "val": "analytical", "label": { "fr": "Analytique" } },
+        { "val": "pedagogic", "label": { "fr": "Pédagogique" } }
+      ],
+      "formats": [
+        { "val": "report", "label": { "fr": "Rapport de poste" } },
+        { "val": "incident", "label": { "fr": "Fiche Incident" } },
+        { "val": "procedure", "label": { "fr": "Procédure (Pas à pas)" } },
+        { "val": "checklist", "label": { "fr": "Checklist" } },
+        { "val": "kaizen", "label": { "fr": "Fiche Amélioration (Kaizen)" } }
+      ]
     },
-    "dev": {
-        "category": "tech",
-        "theme": {
-            "primary": "#6366f1",
-            "surface": "#eef2ff"
-        },
-        "icon": "fa-code",
-        "translations": {
-            "fr": {
-                "title": "Développeur"
-            },
-            "en": {
-                "title": "Developer"
-            }
-        },
-        "options": {
-            "tones": [
-                {
-                    "val": "technical",
-                    "label": {
-                        "fr": "Technique",
-                        "en": "Technical"
-                    }
-                },
-                {
-                    "val": "pedagogic",
-                    "label": {
-                        "fr": "Pédagogique (Enseignant)",
-                        "en": "Pedagogic"
-                    }
-                }
-            ],
-            "formats": [
-                {
-                    "val": "code",
-                    "label": {
-                        "fr": "Bloc de Code",
-                        "en": "Code Block"
-                    }
-                },
-                {
-                    "val": "markdown",
-                    "label": {
-                        "fr": "Markdown",
-                        "en": "Markdown"
-                    }
-                }
-            ]
-        },
-        "templates": {
-            "code_explain": {
-                "fr": {
-                    "name": "Expliquer ce code",
-                    "role": "Lead Dev",
-                    "task": "Expliquer le snippet ligne par ligne.",
-                    "context": "Code legacy.",
-                    "tone": "pedagogic",
-                    "format": "text",
-                    "instructions": [
-                        "Pattern utilisé.",
-                        "Fonctions clés.",
-                        "Risques."
-                    ]
-                }
-            }
+    "templates": {
+      "fin_poste": {
+        "fr": {
+          "name": "Rapport Fin de Poste",
+          "role": "Chef d'équipe Production",
+          "task": "Rédiger le bilan de l'équipe (2x8 ou 3x8).",
+          "context": "Atelier Découpe / Désossage.",
+          "tone": "direct",
+          "format": "report",
+          "constraints": "Préciser les volumes et les arrêts.",
+          "instructions": [
+            "Tonnage réalisé vs Objectif.",
+            "Problèmes techniques rencontrés (arrêts ligne).",
+            "Points de vigilance pour l'équipe suivante."
+          ]
         }
+      },
+      "incident_qualite": {
+        "fr": {
+          "name": "Signalement Incident Qualité",
+          "role": "Opérateur 2ème transformation",
+          "task": "Signaler une non-conformité sur la matière.",
+          "context": "Problème détecté sur la ligne saucisson.",
+          "tone": "security",
+          "format": "incident",
+          "constraints": "Traçabilité.",
+          "instructions": [
+            "Heure et Lot concerné.",
+            "Description du défaut (visuel, odeur, texture).",
+            "Action immédiate prise (isolement palette)."
+          ]
+        }
+      },
+      "sop_creation": {
+        "fr": {
+          "name": "Création Procédure (SOP)",
+          "role": "Responsable Méthodes",
+          "task": "Rédiger un mode opératoire standardisé pour une machine.",
+          "context": "Nouvelle ligne de conditionnement.",
+          "tone": "didactic",
+          "format": "procedure",
+          "constraints": "Pas à pas, impératif.",
+          "instructions": [
+            "Liste des EPI obligatoires.",
+            "Étapes de démarrage et d'arrêt.",
+            "Points de contrôle qualité à chaque étape."
+          ]
+        }
+      },
+      "root_cause": {
+        "fr": {
+          "name": "Analyse 5 Pourquoi",
+          "role": "Responsable Amélioration Continue",
+          "task": "Trouver la cause racine d'un problème récurrent.",
+          "context": "Arrêt fréquent de la trancheuse.",
+          "tone": "analytical",
+          "format": "report",
+          "constraints": "Logique causale.",
+          "instructions": [
+            "Décrire le problème initial.",
+            "Dérouler les 5 niveaux de 'Pourquoi'.",
+            "Proposer une action corrective définitive."
+          ]
+        }
+      }
     }
+  },
+  "maintenance": {
+    "category": "technique",
+    "theme": { "primary": "#F0861E", "surface": "#fff7ed" },
+    "icon": "fa-wrench",
+    "translations": { "fr": { "title": "Maintenance & Travaux Neufs" } },
+    "options": {
+      "tones": [
+        { "val": "technical", "label": { "fr": "Technique" } },
+        { "val": "analytical", "label": { "fr": "Analytique" } },
+        { "val": "urgent", "label": { "fr": "Urgent" } },
+        { "val": "didactic", "label": { "fr": "Didactique (Explicatif)" } }
+      ],
+      "formats": [
+        { "val": "intervention", "label": { "fr": "Rapport Intervention" } },
+        { "val": "plan", "label": { "fr": "Plan Maintenance" } },
+        { "val": "email", "label": { "fr": "Email Fournisseur/Client" } },
+        { "val": "diagnosis", "label": { "fr": "Diagnostic Panne" } }
+      ]
+    },
+    "templates": {
+      "panne_machine": {
+        "fr": {
+          "name": "Rapport Intervention Panne",
+          "role": "Électromécanicien",
+          "task": "Documenter une réparation pour l'historique GMAO.",
+          "context": "Arrêt chaudière ou tunnel de lavage.",
+          "tone": "technical",
+          "format": "intervention",
+          "constraints": "Précis pour les pièces détachées.",
+          "instructions": [
+            "Symptôme constaté.",
+            "Diagnostic (Cause racine).",
+            "Pièces changées et temps passé."
+          ]
+        }
+      },
+      "diag_fail": {
+        "fr": {
+          "name": "Diagnostic Panne Complexe",
+          "role": "Chef d'Atelier",
+          "task": "Lister les causes probables d'un symptôme mécanique.",
+          "context": "Convoyeur qui vibre anormalement.",
+          "tone": "analytical",
+          "format": "diagnosis",
+          "constraints": "Méthodique.",
+          "instructions": [
+            "Lister les vérifications du plus simple au plus complexe.",
+            "Hypothèse électrique vs mécanique.",
+            "Indiquer les tests à faire pour valider."
+          ]
+        }
+      },
+      "maintenance_plan": {
+        "fr": {
+          "name": "Plan Maintenance Préventive",
+          "role": "Responsable Maintenance",
+          "task": "Créer un plan d'entretien pour une nouvelle machine.",
+          "context": "Installation d'un nouveau robot palettiseur.",
+          "tone": "direct",
+          "format": "plan",
+          "constraints": "Format Check-list.",
+          "instructions": [
+            "Actions quotidiennes (opérateur).",
+            "Actions mensuelles (technicien).",
+            "Références des consommables (graisse, filtres)."
+          ]
+        }
+      },
+      "parts_request": {
+        "fr": {
+          "name": "Demande Pièce Urgente",
+          "role": "Magasinier Technique",
+          "task": "Demander un devis et délai pour une pièce critique.",
+          "context": "Rupture de stock sur roulement spécifique.",
+          "tone": "urgent",
+          "format": "email",
+          "constraints": "Préciser l'impact production.",
+          "instructions": [
+            "Référence exacte et photo.",
+            "Demande de livraison express.",
+            "Demande de confirmation immédiate de dispo."
+          ]
+        }
+      }
+    }
+  },
+  "logistique": {
+    "category": "flux",
+    "theme": { "primary": "#15803d", "surface": "#f0fdf4" },
+    "icon": "fa-truck-fast",
+    "translations": { "fr": { "title": "Logistique & Supply Chain" } },
+    "options": {
+      "tones": [
+        { "val": "formal", "label": { "fr": "Formel" } },
+        { "val": "urgent", "label": { "fr": "Urgent" } },
+        { "val": "negotiation", "label": { "fr": "Négociation" } },
+        { "val": "concise", "label": { "fr": "Concis" } }
+      ],
+      "formats": [
+        { "val": "email", "label": { "fr": "Email Transporteur" } },
+        { "val": "procedure", "label": { "fr": "Procédure Stock" } },
+        { "val": "claim", "label": { "fr": "Réclamation / Litige" } },
+        { "val": "audit", "label": { "fr": "Rapport Inventaire" } }
+      ]
+    },
+    "templates": {
+      "litige_transport": {
+        "fr": {
+          "name": "Litige Transport (Casse)",
+          "role": "Gestionnaire de Quai",
+          "task": "Signaler de la casse à réception.",
+          "context": "Palette livrée endommagée.",
+          "tone": "formal",
+          "format": "claim",
+          "constraints": "Juridique (réserves).",
+          "instructions": [
+            "Référence BL et Transporteur.",
+            "Description précise des dommages.",
+            "Photos jointes et refus partiel/total."
+          ]
+        }
+      },
+      "inventory_process": {
+        "fr": {
+          "name": "Procédure Inventaire",
+          "role": "Chef d'Entrepôt",
+          "task": "Rédiger la procédure d'inventaire annuel.",
+          "context": "Briefing des équipes avant comptage.",
+          "tone": "direct",
+          "format": "procedure",
+          "constraints": "Sécurité et rigueur.",
+          "instructions": [
+            "Préparation de la zone (rangement).",
+            "Méthode de comptage (double aveugle).",
+            "Gestion des écarts constatés."
+          ]
+        }
+      },
+      "stock_alert": {
+        "fr": {
+          "name": "Alerte Rupture Stock",
+          "role": "Gestionnaire de Stock",
+          "task": "Prévenir les ventes/prod d'une rupture imminente.",
+          "context": "Retard fournisseur sur emballage.",
+          "tone": "urgent",
+          "format": "email",
+          "constraints": "Anticipation.",
+          "instructions": [
+            "Date de rupture estimée.",
+            "Date de retour en stock prévue.",
+            "Solutions de contournement (produit de substitution)."
+          ]
+        }
+      },
+      "delivery_delay": {
+        "fr": {
+          "name": "Annonce Retard Livraison",
+          "role": "Service ADV / Transport",
+          "task": "Informer un client d'un retard de livraison.",
+          "context": "Grève des transports ou météo.",
+          "tone": "empathetic",
+          "format": "email",
+          "constraints": "Proactif.",
+          "instructions": [
+            "S'excuser pour la gêne.",
+            "Donner la nouvelle date estimée (ETA).",
+            "Rester à disposition pour le suivi."
+          ]
+        }
+      }
+    }
+  },
+  "qhse": {
+    "category": "transverse",
+    "theme": { "primary": "#b91c1c", "surface": "#fef2f2" },
+    "icon": "fa-shield-heart",
+    "translations": { "fr": { "title": "Qualité, Hygiène & Sécurité" } },
+    "options": {
+      "tones": [
+        { "val": "pedagogic", "label": { "fr": "Pédagogique" } },
+        { "val": "firm", "label": { "fr": "Ferme / Rappel à l'ordre" } },
+        { "val": "analytical", "label": { "fr": "Analytique" } },
+        { "val": "urgent", "label": { "fr": "Urgent" } }
+      ],
+      "formats": [
+        { "val": "flash", "label": { "fr": "Flash Sécurité / Causerie" } },
+        { "val": "audit", "label": { "fr": "Compte-rendu Audit" } },
+        { "val": "procedure", "label": { "fr": "Protocole / Instruction" } },
+        { "val": "poster", "label": { "fr": "Affiche / Communication" } }
+      ]
+    },
+    "templates": {
+      "flash_securite": {
+        "fr": {
+          "name": "Flash Sécurité (Accident)",
+          "role": "Animateur Sécurité",
+          "task": "Sensibiliser les équipes après un presque-accident.",
+          "context": "Chute de plain-pied ou coupure.",
+          "tone": "pedagogic",
+          "format": "flash",
+          "constraints": "Visuel et court.",
+          "instructions": [
+            "Que s'est-il passé ? (Faits).",
+            "Pourquoi ? (Causes).",
+            "La règle d'or à respecter pour éviter la récidive."
+          ]
+        }
+      },
+      "safety_talk": {
+        "fr": {
+          "name": "Causerie Sécurité (5 min)",
+          "role": "Manager / HSE",
+          "task": "Support pour réunion de 5 min avant prise de poste.",
+          "context": "Rappel sur le port des EPI (Bouchons d'oreilles).",
+          "tone": "engaging",
+          "format": "flash",
+          "constraints": "Participatif.",
+          "instructions": [
+            "Sujet du jour.",
+            "Pourquoi c'est important (Risques santé).",
+            "Demander un retour terrain sur les difficultés."
+          ]
+        },
+        "fr": {
+          "name": "Checklist Audit Hygiène",
+          "role": "Auditeur Interne",
+          "task": "Liste des points de contrôle pour un audit.",
+          "context": "Audit zone de conditionnement.",
+          "tone": "professional",
+          "format": "audit",
+          "constraints": "Normatif (IFS/BRC).",
+          "instructions": [
+            "Points conformité infrastructure.",
+            "Respect des bonnes pratiques (Lavage mains).",
+            "Gestion des déchets."
+          ]
+        }
+      },
+      "audit_hygiene": {
+        "fr": {
+          "name": "Checklist Audit Hygiène",
+          "role": "Auditeur Interne",
+          "task": "Liste des points de contrôle pour un audit.",
+          "context": "Audit zone de conditionnement.",
+          "tone": "professional",
+          "format": "audit",
+          "constraints": "Normatif (IFS/BRC).",
+          "instructions": [
+            "Points conformité infrastructure.",
+            "Respect des bonnes pratiques (Lavage mains).",
+            "Gestion des déchets."
+          ]
+        }
+      },
+      "environmental_report": {
+        "fr": {
+          "name": "Bilan Environnemental",
+          "role": "Responsable RSE",
+          "task": "Synthétiser les résultats consommation eau/énergie.",
+          "context": "Communication mensuelle aux équipes.",
+          "tone": "analytical",
+          "format": "poster",
+          "constraints": "Motivant.",
+          "instructions": [
+            "Chiffres du mois vs Objectif.",
+            "Équivalence concrète (ex: X piscines olympiques).",
+            "Félicitations ou alerte sur les dérives."
+          ]
+        }
+      }
+    }
+  },
+  "agricole": {
+    "category": "amont",
+    "theme": { "primary": "#a16207", "surface": "#fefce8" },
+    "icon": "fa-wheat",
+    "translations": { "fr": { "title": "Amont Agricole & Nutrition" } },
+    "options": {
+      "tones": [
+        { "val": "advisory", "label": { "fr": "Conseil" } },
+        { "val": "technical", "label": { "fr": "Technique" } },
+        { "val": "empathetic", "label": { "fr": "Empathique" } },
+        { "val": "analytical", "label": { "fr": "Analytique" } }
+      ],
+      "formats": [
+        { "val": "visit", "label": { "fr": "Compte-rendu visite" } },
+        { "val": "protocol", "label": { "fr": "Protocole Soin / Nutrition" } },
+        { "val": "diagnosis", "label": { "fr": "Diagnostic" } },
+        { "val": "plan", "label": { "fr": "Plan d'action" } }
+      ]
+    },
+    "templates": {
+      "visite_elevage": {
+        "fr": {
+          "name": "CR Visite Élevage",
+          "role": "Technicien Porc",
+          "task": "Rédiger le bilan de visite chez un adhérent.",
+          "context": "Suivi technique et sanitaire.",
+          "tone": "advisory",
+          "format": "visit",
+          "constraints": "Constructif.",
+          "instructions": [
+            "Indicateurs de performance (GMQ, IC).",
+            "Observations état sanitaire.",
+            "Recommandations nutritionnelles."
+          ]
+        }
+      },
+      "nutrition_plan": {
+        "fr": {
+          "name": "Plan de Nutrition",
+          "role": "Nutritionniste Animal",
+          "task": "Proposer un ajustement de formule.",
+          "context": "Baisse de croissance observée en post-sevrage.",
+          "tone": "technical",
+          "format": "protocol",
+          "constraints": "Optimisation coût/perf.",
+          "instructions": [
+            "Analyse des besoins actuels.",
+            "Changement de matière première proposé.",
+            "Résultats attendus."
+          ]
+        }
+      },
+      "sanitary_alert": {
+        "fr": {
+          "name": "Alerte Sanitaire",
+          "role": "Vétérinaire Conseil",
+          "task": "Informer les éleveurs d'un risque viral.",
+          "context": "Cas de maladie détecté dans la région.",
+          "tone": "urgent",
+          "format": "email",
+          "constraints": "Précis sur la biosécurité.",
+          "instructions": [
+            "Description de la menace.",
+            "Mesures de biosécurité renforcées à appliquer immédiatement.",
+            "Signes cliniques à surveiller."
+          ]
+        }
+      },
+      "audit_batiment": {
+        "fr": {
+          "name": "Audit Bâtiment/Ventilation",
+          "role": "Expert Bâtiment",
+          "task": "Diagnostiquer un problème d'ambiance.",
+          "context": "Problème d'humidité et toux en engraissement.",
+          "tone": "analytical",
+          "format": "diagnosis",
+          "constraints": "Technique.",
+          "instructions": [
+            "Relevés de mesures (CO2, Température).",
+            "Défauts constatés (Entrées d'air, Réglages).",
+            "Plan d'action correctif."
+          ]
+        }
+      }
+    }
+  },
+  "commerce": {
+    "category": "business",
+    "theme": { "primary": "#7e22ce", "surface": "#faf5ff" },
+    "icon": "fa-handshake",
+    "translations": { "fr": { "title": "Commerce & Marketing" } },
+    "options": {
+      "tones": [
+        { "val": "persuasive", "label": { "fr": "Commercial / Vendeur" } },
+        { "val": "strategic", "label": { "fr": "Stratégique" } },
+        { "val": "empathetic", "label": { "fr": "Relationnel / Empathique" } },
+        { "val": "confident", "label": { "fr": "Confiant / Assertif" } },
+        { "val": "enthusiastic", "label": { "fr": "Enthousiaste" } }
+      ],
+      "formats": [
+        { "val": "email", "label": { "fr": "Email Client" } },
+        { "val": "pitch", "label": { "fr": "Argumentaire / Pitch" } },
+        { "val": "social", "label": { "fr": "Post LinkedIn / Réseaux" } },
+        { "val": "script", "label": { "fr": "Script Appel / Nego" } },
+        { "val": "objection", "label": { "fr": "Traitement Objection" } }
+      ]
+    },
+    "templates": {
+      "reponse_ao": {
+        "fr": {
+          "name": "Argumentaire GMS",
+          "role": "Compte Clé GMS",
+          "task": "Défendre le référencement d'une nouvelle gamme.",
+          "context": "Gamme 'Sans Antibiotique' ou 'Bien-être animal'.",
+          "tone": "persuasive",
+          "format": "pitch",
+          "constraints": "Chiffré.",
+          "instructions": [
+            "Tendances consommateurs (Marché).",
+            "Avantages concurrentiels Cooperl (filière intégrée).",
+            "Plan de soutien promo."
+          ]
+        }
+      },
+      "cold_email_b2b": {
+        "fr": {
+          "name": "Email Prospection B2B",
+          "role": "Commercial Export",
+          "task": "Contacter un nouveau prospect distributeur.",
+          "context": "Premier contact, marché asiatique ou européen.",
+          "tone": "professional",
+          "format": "email",
+          "constraints": "Court et impactant.",
+          "instructions": [
+            "Accroche personnalisée.",
+            "Proposition de valeur unique (Qualité, Volume).",
+            "Appel à l'action (Call, Envoi échantillons)."
+          ]
+        }
+      },
+      "negotiation_price": {
+        "fr": {
+          "name": "Négociation Tarifaire",
+          "role": "Directeur Commercial",
+          "task": "Annoncer et justifier une hausse tarifaire.",
+          "context": "Hausse des matières premières/énergie.",
+          "tone": "confident",
+          "format": "email",
+          "constraints": "Ferme mais partenaire.",
+          "instructions": [
+            "Contexte économique factuel.",
+            "Impact sur nos coûts de production.",
+            "Nouvelle grille tarifaire et date d'effet."
+          ]
+        }
+      },
+      "product_launch_linkedin": {
+        "fr": {
+          "name": "Post LinkedIn Lancement",
+          "role": "Marketing Manager",
+          "task": "Annoncer une innovation produit.",
+          "context": "Lancement d'un nouveau packaging éco-conçu.",
+          "tone": "enthusiastic",
+          "format": "social",
+          "constraints": "Storytelling.",
+          "instructions": [
+            "Le problème (déchets plastique).",
+            "La solution Cooperl.",
+            "L'impact positif.",
+            "Invitation à découvrir en magasin."
+          ]
+        }
+      },
+      "objection_handling": {
+        "fr": {
+          "name": "Traitement Objection",
+          "role": "Commercial",
+          "task": "Répondre à 'C'est trop cher'.",
+          "context": "Négociation annuelle.",
+          "tone": "persuasive",
+          "format": "objection",
+          "constraints": "Valoriser la qualité.",
+          "instructions": [
+            "Valider l'objection (écoute active).",
+            "Recadrer sur la valeur totale (Service, Qualité, Fiabilité).",
+            "Comparer le coût de la non-qualité."
+          ]
+        }
+      }
+    }
+  },
+  "it_data": {
+    "category": "support",
+    "theme": { "primary": "#0e7490", "surface": "#ecfeff" },
+    "icon": "fa-laptop-code",
+    "translations": { "fr": { "title": "SI & Data" } },
+    "options": {
+      "tones": [
+        { "val": "technical", "label": { "fr": "Technique" } },
+        { "val": "didactic", "label": { "fr": "Didactique (Vulgarisé)" } },
+        { "val": "concise", "label": { "fr": "Concis" } },
+        { "val": "formal", "label": { "fr": "Formel" } }
+      ],
+      "formats": [
+        { "val": "doc", "label": { "fr": "Documentation" } },
+        { "val": "spec", "label": { "fr": "Spécification Fonctionnelle" } },
+        { "val": "sql", "label": { "fr": "Requête SQL" } },
+        { "val": "email", "label": { "fr": "Email Support / Annonce" } },
+        { "val": "code", "label": { "fr": "Snippet Code / Script" } }
+      ]
+    },
+    "templates": {
+      "spec_fonctionnelle": {
+        "fr": {
+          "name": "Besoin Métier (ERP)",
+          "role": "Chef de Projet SI",
+          "task": "Traduire un besoin métier en spécification pour les devs.",
+          "context": "Nouvel écran de saisie pour l'abattoir.",
+          "tone": "technical",
+          "format": "spec",
+          "constraints": "Exhaustif.",
+          "instructions": [
+            "Qui utilise l'écran ? (Persona).",
+            "Données en entrée (Poids, N° Tueur).",
+            "Règles de gestion et contrôles de saisie."
+          ]
+        }
+      },
+      "sql_query_help": {
+        "fr": {
+          "name": "Aide Requête SQL",
+          "role": "Data Analyst",
+          "task": "Générer ou optimiser une requête SQL.",
+          "context": "Extraction de données de production.",
+          "tone": "technical",
+          "format": "sql",
+          "constraints": "Performance.",
+          "instructions": [
+            "Tables concernées.",
+            "Jointures nécessaires.",
+            "Filtres et agrégations."
+          ]
+        }
+      },
+      "user_guide_tool": {
+        "fr": {
+          "name": "Guide Utilisateur Outil",
+          "role": "Support IT",
+          "task": "Expliquer une nouvelle fonctionnalité aux utilisateurs.",
+          "context": "Mise à jour de l'outil de note de frais.",
+          "tone": "didactic",
+          "format": "doc",
+          "constraints": "Pas à pas, sans jargon.",
+          "instructions": [
+            "À quoi ça sert ?",
+            "Les étapes pour l'utiliser (1, 2, 3).",
+            "Que faire en cas de problème ?"
+          ]
+        }
+      },
+      "maintenance_alert": {
+        "fr": {
+          "name": "Annonce Maintenance",
+          "role": "DSI",
+          "task": "Prévenir les utilisateurs d'une coupure de service.",
+          "context": "Mise à jour serveur critique.",
+          "tone": "formal",
+          "format": "email",
+          "constraints": "Clair sur les horaires.",
+          "instructions": [
+            "Services impactés.",
+            "Date et durée de l'indisponibilité.",
+            "Impact pour l'utilisateur (sauvegarder avant).",
+            "Excuse pour la gêne."
+          ]
+        }
+      },
+      "bug_report_dev": {
+        "fr": {
+          "name": "Rapport Bug Détaillé",
+          "role": "Testeur / Key User",
+          "task": "Décrire un bug pour les développeurs.",
+          "context": "Erreur lors de la validation d'une commande.",
+          "tone": "concise",
+          "format": "doc",
+          "constraints": "Reproductible.",
+          "instructions": [
+            "Scénario pour reproduire le bug (pas à pas).",
+            "Résultat attendu vs Résultat obtenu.",
+            "Environnement (Navigateur, PC/Tablette)."
+          ]
+        }
+      }
+    }
+  },
+  "support": {
+    "category": "transverse",
+    "theme": { "primary": "#475569", "surface": "#f1f5f9" },
+    "icon": "fa-users",
+    "translations": { "fr": { "title": "Fonctions Supports (RH, Admin, Compta)" } },
+    "options": {
+      "tones": [
+        { "val": "formal", "label": { "fr": "Formel & Administratif" } },
+        { "val": "empathetic", "label": { "fr": "Bienveillant & Humain" } },
+        { "val": "firm", "label": { "fr": "Ferme / Rappel" } },
+        { "val": "engaging", "label": { "fr": "Engageant (Com Interne)" } }
+      ],
+      "formats": [
+        { "val": "email", "label": { "fr": "Email / Note" } },
+        { "val": "job_desc", "label": { "fr": "Fiche de Poste" } },
+        { "val": "minutes", "label": { "fr": "Compte-Rendu Réunion" } },
+        { "val": "procedure", "label": { "fr": "Procédure Admin" } }
+      ]
+    },
+    "templates": {
+      "annonce_interne": {
+        "fr": {
+          "name": "Note de Service RH",
+          "role": "DRH",
+          "task": "Communiquer sur une nouvelle organisation ou règle.",
+          "context": "Mise en place de nouveaux horaires ou télétravail.",
+          "tone": "formal",
+          "format": "email",
+          "constraints": "Clair et légal.",
+          "instructions": [
+            "Contexte du changement.",
+            "Détail des mesures.",
+            "Date d'effet et contacts."
+          ]
+        }
+      },
+      "job_description": {
+        "fr": {
+          "name": "Fiche de Poste",
+          "role": "Recruteur",
+          "task": "Rédiger une annonce attractive pour un recrutement.",
+          "context": "Recrutement difficile (ex: Boucher ou Maintenance).",
+          "tone": "engaging",
+          "format": "job_desc",
+          "constraints": "Valoriser la marque employeur.",
+          "instructions": [
+            "Description de l'entreprise et de l'équipe.",
+            "Missions principales.",
+            "Profil attendu et avantages (Mutuelle, CE, Intéressement)."
+          ]
+        }
+      },
+      "meeting_minutes": {
+        "fr": {
+          "name": "Compte-Rendu Réunion",
+          "role": "Assistant(e) Direction",
+          "task": "Synthétiser une réunion d'équipe.",
+          "context": "Réunion mensuelle de service.",
+          "tone": "formal",
+          "format": "minutes",
+          "constraints": "Actionnable.",
+          "instructions": [
+            "Relevé des décisions prises.",
+            "Points d'information.",
+            "Plan d'action (Qui fait Quoi pour Quand)."
+          ]
+        }
+      },
+      "unpaid_invoice": {
+        "fr": {
+          "name": "Relance Facture Impayée",
+          "role": "Comptable",
+          "task": "Relancer un client pour une facture en retard.",
+          "context": "Client habituel, retard de 15 jours.",
+          "tone": "firm",
+          "format": "email",
+          "constraints": "Courtois mais ferme.",
+          "instructions": [
+            "Rappel du numéro de facture et du montant.",
+            "Demande de régularisation sous délai.",
+            "Joindre le RIB."
+          ]
+        }
+      },
+      "onboarding_plan": {
+        "fr": {
+          "name": "Parcours d'Intégration",
+          "role": "Manager / RH",
+          "task": "Planifier la première semaine d'un nouvel arrivant.",
+          "context": "Nouveau cadre.",
+          "tone": "engaging",
+          "format": "procedure",
+          "constraints": "Accueillant.",
+          "instructions": [
+            "Jour 1 : Accueil, Matériel, Visite.",
+            "Rencontres clés avec les autres services.",
+            "Points de formation et objectifs de la semaine."
+          ]
+        }
+      }
+    }
+  }
 }
