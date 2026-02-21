@@ -1,0 +1,112 @@
+{
+    "modes": {
+        "cinematic": {
+            "translations": {
+                "fr": "Cinématique",
+                "en": "Cinematic"
+            },
+            "icon": "fa-film",
+            "fields": [
+                {
+                    "id": "framerate",
+                    "label": {
+                        "fr": "Fréquence d'images (FPS)",
+                        "en": "Framerate (FPS)"
+                    },
+                    "options": [
+                        {
+                            "val": "24fps",
+                            "label": {
+                                "fr": "24 FPS (Style Film)",
+                                "en": "24 FPS (Film Look)"
+                            }
+                        },
+                        {
+                            "val": "60fps",
+                            "label": {
+                                "fr": "60 FPS (Ultra fluide)",
+                                "en": "60 FPS (Ultra smooth)"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "camera_motion",
+                    "label": {
+                        "fr": "Mouvement de Caméra",
+                        "en": "Camera Motion"
+                    },
+                    "options": [
+                        {
+                            "val": "Slow pan left to right",
+                            "label": {
+                                "fr": "Panoramique lent (gauche à droite)",
+                                "en": "Slow Pan L->R"
+                            }
+                        },
+                        {
+                            "val": "Drone shot flying over",
+                            "label": {
+                                "fr": "Vue drone (survol)",
+                                "en": "Drone flyover"
+                            }
+                        },
+                        {
+                            "val": "Static tripod shot",
+                            "label": {
+                                "fr": "Plan fixe (trépied)",
+                                "en": "Static tripod"
+                            }
+                        },
+                        {
+                            "val": "Handheld shaky cam",
+                            "label": {
+                                "fr": "Caméra épaule (mouvement naturel)",
+                                "en": "Handheld shaky"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "animation": {
+            "translations": {
+                "fr": "Animation (2D/3D)",
+                "en": "Animation (2D/3D)"
+            },
+            "icon": "fa-gamepad",
+            "fields": [
+                {
+                    "id": "animation_style",
+                    "label": {
+                        "fr": "Style d'animation",
+                        "en": "Animation Style"
+                    },
+                    "options": [
+                        {
+                            "val": "Pixar 3D style",
+                            "label": {
+                                "fr": "3D (Style Pixar/Disney)",
+                                "en": "3D (Pixar/Disney)"
+                            }
+                        },
+                        {
+                            "val": "Studio Ghibli 2D anime style",
+                            "label": {
+                                "fr": "Anime (Style Ghibli)",
+                                "en": "Anime (Ghibli)"
+                            }
+                        },
+                        {
+                            "val": "Stop motion claymation",
+                            "label": {
+                                "fr": "Stop Motion (Pâte à modeler)",
+                                "en": "Stop Motion"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

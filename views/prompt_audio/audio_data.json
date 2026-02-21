@@ -1,0 +1,105 @@
+{
+    "genres": {
+        "pop": {
+            "translations": {
+                "fr": "Pop / Électro",
+                "en": "Pop / Electro"
+            },
+            "icon": "fa-music",
+            "fields": [
+                {
+                    "id": "tempo",
+                    "label": {
+                        "fr": "Tempo",
+                        "en": "Tempo"
+                    },
+                    "options": [
+                        {
+                            "val": "Upbeat, fast tempo, energetic",
+                            "label": {
+                                "fr": "Rapide et Énergique",
+                                "en": "Fast and Energetic"
+                            }
+                        },
+                        {
+                            "val": "Mid-tempo, chill",
+                            "label": {
+                                "fr": "Tempo moyen, Chill",
+                                "en": "Mid-tempo, Chill"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "vocals",
+                    "label": {
+                        "fr": "Voix",
+                        "en": "Vocals"
+                    },
+                    "options": [
+                        {
+                            "val": "Female pop vocals",
+                            "label": {
+                                "fr": "Voix féminine",
+                                "en": "Female Vocals"
+                            }
+                        },
+                        {
+                            "val": "Male pop vocals",
+                            "label": {
+                                "fr": "Voix masculine",
+                                "en": "Male Vocals"
+                            }
+                        },
+                        {
+                            "val": "Instrumental only, no vocals",
+                            "label": {
+                                "fr": "Instrumental (sans voix)",
+                                "en": "Instrumental"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "cinematic": {
+            "translations": {
+                "fr": "Bande Originale (Cinématique)",
+                "en": "Cinematic Score"
+            },
+            "icon": "fa-film",
+            "fields": [
+                {
+                    "id": "mood",
+                    "label": {
+                        "fr": "Ambiance de la scène",
+                        "en": "Scene Mood"
+                    },
+                    "options": [
+                        {
+                            "val": "Epic, orchestral, triumphant, Hans Zimmer style",
+                            "label": {
+                                "fr": "Épique, Orchestral, Triomphant",
+                                "en": "Epic, Orchestral"
+                            }
+                        },
+                        {
+                            "val": "Dark, suspenseful, tense, thriller score",
+                            "label": {
+                                "fr": "Sombre, Suspens, Tension",
+                                "en": "Dark, Suspenseful"
+                            }
+                        },
+                        {
+                            "val": "Sad, emotional, piano and strings",
+                            "label": {
+                                "fr": "Triste, Émotionnel (Piano et cordes)",
+                                "en": "Emotional, Piano"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
