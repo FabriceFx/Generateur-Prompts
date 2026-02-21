@@ -55,7 +55,7 @@ if page == "🏠 Accueil et guide":
     
     st.header("💡 Pourquoi structurer ses prompts ?")
     st.markdown("""
-    Communiquer avec une intelligence artificielle (comme ChatGPT, Claude ou Midjourney) demande de la précision. 
+    Communiquer avec une intelligence artificielle (comme ChatGPT, Claude, Gemini, Perplexity ou Mistral) demande de la précision. 
     Un "prompt" (la requête que vous envoyez) brouillon donnera une réponse brouillonne.
     
     **Un prompt bien structuré permet de :**
@@ -72,7 +72,7 @@ if page == "🏠 Accueil et guide":
         with st.container(border=True):
             st.subheader("📝 Le générateur textuel")
             st.markdown("""
-            Cet outil est conçu pour les IA de texte (ChatGPT, etc.). 
+            Cet outil est conçu pour les IA de texte (ChatGPT, Claude, Gemini, Perplexity, Mistral...). 
             
             **Comment l'utiliser ?**
             1. **Choisissez un métier** (ex: Achats, Développement) pour orienter l'IA.
@@ -86,7 +86,7 @@ if page == "🏠 Accueil et guide":
         with st.container(border=True):
             st.subheader("📸 Le générateur visuel")
             st.markdown("""
-            Cet outil est conçu pour les générateurs d'images (Midjourney, DALL-E, Stable Diffusion).
+            Cet outil est conçu pour les générateurs d'images (Midjourney, DALL-E, Stable Diffusion, Imagen sur Gemini...).
             
             **Comment l'utiliser ?**
             1. **Choisissez le style global** de l'image (Portrait humain, Paysage).
@@ -100,7 +100,7 @@ if page == "🏠 Accueil et guide":
 
 elif page == "📝 Générateur de texte":
     st.title("📝 Générateur textuel")
-    st.markdown("Créez des prompts précis et efficaces pour vos IA textuelles (ChatGPT, Claude, etc.).")
+    st.markdown("Créez des prompts précis et efficaces pour vos IA textuelles (ChatGPT, Claude, Gemini, Perplexity, Mistral...).")
     
     if not logic_data:
         st.error("Erreur : le fichier logic_data.json est introuvable dans views/prompt_logic/.")
