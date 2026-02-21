@@ -537,15 +537,16 @@ elif page_idx == 4:  # Générateur de musique
                 
                 concept = st.text_area("Thème de la chanson ou Paroles", placeholder="Ex : Une chanson sur le courage et l'exploration spatiale...")
                 
-                with st.expander("Tempo et Ambiance", expanded=True):
+                with st.expander("Tempo, Ambiance et Instruments", expanded=True):
                     fields = genres[genre_id].get('fields', [])
                     selections = {}
                     
                     for field in fields:
                         options_labels = [opt['label']['fr'] for opt in field['options']]
-                        choice = st.selectbox(field['label']['fr'], options_labels, key=f"aud_{field['id']}")
-                        val_technique = next(opt['val'] for opt in field['options'] if opt['label']['fr'] == choice)
-                        selections[field['id']] = val_technique
+                        choice = st.selectbox(field['label']['fr'], ["-- Sélectionner --"] + options_labels, key=f"aud_{field['id']}")
+                        if choice != "-- Sélectionner --":
+                            val_technique = next(opt['val'] for opt in field['options'] if opt['label']['fr'] == choice)
+                            selections[field['id']] = val_technique
 
         with col_a2:
             with st.container(border=True):

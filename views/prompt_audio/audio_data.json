@@ -1,12 +1,56 @@
 {
     "genres": {
-        "pop": {
+        "pop_electro": {
             "translations": {
                 "fr": "Pop / Électro",
                 "en": "Pop / Electro"
             },
             "icon": "fa-music",
             "fields": [
+                {
+                    "id": "subgenre",
+                    "label": {
+                        "fr": "Sous-genre",
+                        "en": "Subgenre"
+                    },
+                    "options": [
+                        {
+                            "val": "Synthwave, 80s retro, neon",
+                            "label": {
+                                "fr": "Synthwave (Rétro 80s)",
+                                "en": "Synthwave"
+                            }
+                        },
+                        {
+                            "val": "EDM, Club music, heavy bass",
+                            "label": {
+                                "fr": "EDM / Club",
+                                "en": "EDM"
+                            }
+                        },
+                        {
+                            "val": "K-pop, catchy melodies",
+                            "label": {
+                                "fr": "K-Pop",
+                                "en": "K-Pop"
+                            }
+                        },
+                        {
+                            "val": "Dream pop, ethereal",
+                            "label": {
+                                "fr": "Dream Pop",
+                                "en": "Dream Pop"
+                            }
+                        },
+                        {
+                            "val": "Cyberpunk, industrial techno",
+                            "label": {
+                                "fr": "Techno / Cyberpunk",
+                                "en": "Cyberpunk Techno"
+                            }
+                        }
+                    ]
+                },
                 {
                     "id": "tempo",
                     "label": {
@@ -17,15 +61,22 @@
                         {
                             "val": "Upbeat, fast tempo, energetic",
                             "label": {
-                                "fr": "Rapide et Énergique",
-                                "en": "Fast and Energetic"
+                                "fr": "Rapide (Upbeat)",
+                                "en": "Fast"
                             }
                         },
                         {
-                            "val": "Mid-tempo, chill",
+                            "val": "Mid-tempo, groovy",
                             "label": {
-                                "fr": "Tempo moyen, Chill",
-                                "en": "Mid-tempo, Chill"
+                                "fr": "Moyen (Groovy)",
+                                "en": "Mid-tempo"
+                            }
+                        },
+                        {
+                            "val": "Slow, atmospheric",
+                            "label": {
+                                "fr": "Lent (Atmosphérique)",
+                                "en": "Slow"
                             }
                         }
                     ]
@@ -52,9 +103,180 @@
                             }
                         },
                         {
-                            "val": "Instrumental only, no vocals",
+                            "val": "Vocal duet",
                             "label": {
-                                "fr": "Instrumental (sans voix)",
+                                "fr": "Duo vocal",
+                                "en": "Duet"
+                            }
+                        },
+                        {
+                            "val": "Robotic vocoder",
+                            "label": {
+                                "fr": "Vocodeur / Robotique",
+                                "en": "Vocoder"
+                            }
+                        },
+                        {
+                            "val": "Instrumental only",
+                            "label": {
+                                "fr": "Instrumental (Pas de voix)",
+                                "en": "Instrumental"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "instrumentation",
+                    "label": {
+                        "fr": "Instruments dominants",
+                        "en": "Instruments"
+                    },
+                    "options": [
+                        {
+                            "val": "Heavy synthesizers, 808 drums",
+                            "label": {
+                                "fr": "Synthétiseurs & Boîte à rythmes",
+                                "en": "Synths & 808"
+                            }
+                        },
+                        {
+                            "val": "Acoustic guitar and gentle beats",
+                            "label": {
+                                "fr": "Guitare acoustique & Beats doux",
+                                "en": "Acoustic & Beats"
+                            }
+                        },
+                        {
+                            "val": "Funky bassline, brass elements",
+                            "label": {
+                                "fr": "Basse Funky & Cuivres",
+                                "en": "Funky Bass"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "rock_metal": {
+            "translations": {
+                "fr": "Rock / Metal",
+                "en": "Rock / Metal"
+            },
+            "icon": "fa-guitar",
+            "fields": [
+                {
+                    "id": "subgenre",
+                    "label": {
+                        "fr": "Sous-genre",
+                        "en": "Subgenre"
+                    },
+                    "options": [
+                        {
+                            "val": "Classic rock, 70s style",
+                            "label": {
+                                "fr": "Classic Rock (70s)",
+                                "en": "Classic Rock"
+                            }
+                        },
+                        {
+                            "val": "Heavy metal, aggressive",
+                            "label": {
+                                "fr": "Heavy Metal",
+                                "en": "Heavy Metal"
+                            }
+                        },
+                        {
+                            "val": "Indie rock, alternative",
+                            "label": {
+                                "fr": "Indie / Alternatif",
+                                "en": "Indie Rock"
+                            }
+                        },
+                        {
+                            "val": "Punk rock, fast and raw",
+                            "label": {
+                                "fr": "Punk Rock",
+                                "en": "Punk Rock"
+                            }
+                        },
+                        {
+                            "val": "Symphonic metal, epic",
+                            "label": {
+                                "fr": "Metal Symphonique",
+                                "en": "Symphonic Metal"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "mood",
+                    "label": {
+                        "fr": "Humeur / Vibe",
+                        "en": "Mood"
+                    },
+                    "options": [
+                        {
+                            "val": "Aggressive, angry, fierce",
+                            "label": {
+                                "fr": "Agressif / Furieux",
+                                "en": "Aggressive"
+                            }
+                        },
+                        {
+                            "val": "Melancholic, sad, emotional",
+                            "label": {
+                                "fr": "Mélancolique",
+                                "en": "Melancholic"
+                            }
+                        },
+                        {
+                            "val": "Anthemic, stadium, uplifting",
+                            "label": {
+                                "fr": "Hymne de stade (Épique)",
+                                "en": "Anthemic"
+                            }
+                        },
+                        {
+                            "val": "Rebellious, gritty",
+                            "label": {
+                                "fr": "Rebelle / Brut",
+                                "en": "Rebellious"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "vocals",
+                    "label": {
+                        "fr": "Type de chant",
+                        "en": "Vocals"
+                    },
+                    "options": [
+                        {
+                            "val": "Clean male vocals, emotional",
+                            "label": {
+                                "fr": "Chant clair (Homme)",
+                                "en": "Clean Male"
+                            }
+                        },
+                        {
+                            "val": "Clean female vocals, powerful",
+                            "label": {
+                                "fr": "Chant clair (Femme)",
+                                "en": "Clean Female"
+                            }
+                        },
+                        {
+                            "val": "Harsh growls, screaming",
+                            "label": {
+                                "fr": "Scream / Growl (Saturé)",
+                                "en": "Screaming"
+                            }
+                        },
+                        {
+                            "val": "Instrumental guitar solo",
+                            "label": {
+                                "fr": "Instrumental (Focus Guitare)",
                                 "en": "Instrumental"
                             }
                         }
@@ -64,37 +286,328 @@
         },
         "cinematic": {
             "translations": {
-                "fr": "Bande Originale (Cinématique)",
-                "en": "Cinematic Score"
+                "fr": "Cinématique / Orchestral",
+                "en": "Cinematic"
             },
             "icon": "fa-film",
             "fields": [
                 {
-                    "id": "mood",
+                    "id": "scene",
                     "label": {
-                        "fr": "Ambiance de la scène",
-                        "en": "Scene Mood"
+                        "fr": "Type de scène",
+                        "en": "Scene Type"
                     },
                     "options": [
                         {
-                            "val": "Epic, orchestral, triumphant, Hans Zimmer style",
+                            "val": "Epic battle theme, triumphant",
                             "label": {
-                                "fr": "Épique, Orchestral, Triomphant",
-                                "en": "Epic, Orchestral"
+                                "fr": "Bataille épique (Triomphant)",
+                                "en": "Epic Battle"
                             }
                         },
                         {
-                            "val": "Dark, suspenseful, tense, thriller score",
+                            "val": "Sad farewell, emotional drama",
                             "label": {
-                                "fr": "Sombre, Suspens, Tension",
-                                "en": "Dark, Suspenseful"
+                                "fr": "Drame émotionnel / Adieu",
+                                "en": "Emotional Drama"
                             }
                         },
                         {
-                            "val": "Sad, emotional, piano and strings",
+                            "val": "Tense thriller cover, suspense",
                             "label": {
-                                "fr": "Triste, Émotionnel (Piano et cordes)",
-                                "en": "Emotional, Piano"
+                                "fr": "Thriller / Suspense",
+                                "en": "Thriller"
+                            }
+                        },
+                        {
+                            "val": "Fantasy adventure, magical",
+                            "label": {
+                                "fr": "Aventure Fantasy (Magique)",
+                                "en": "Fantasy Adventure"
+                            }
+                        },
+                        {
+                            "val": "Sci-fi space exploration, cosmic",
+                            "label": {
+                                "fr": "Science-Fiction / Espace",
+                                "en": "Sci-fi Space"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "instrumentation",
+                    "label": {
+                        "fr": "Orchestration",
+                        "en": "Instrumentation"
+                    },
+                    "options": [
+                        {
+                            "val": "Full symphony orchestra, massive brass",
+                            "label": {
+                                "fr": "Orchestre complet + Cuivres massifs",
+                                "en": "Full Orchestra"
+                            }
+                        },
+                        {
+                            "val": "Solo piano and intimate strings",
+                            "label": {
+                                "fr": "Piano Solo & Cordes intimes",
+                                "en": "Piano & Strings"
+                            }
+                        },
+                        {
+                            "val": "Hybrid orchestral with modern synths",
+                            "label": {
+                                "fr": "Hybride (Orchestre + Synthés)",
+                                "en": "Hybrid Orchestral"
+                            }
+                        },
+                        {
+                            "val": "Epic choir, gregorian chants",
+                            "label": {
+                                "fr": "Chœurs épiques",
+                                "en": "Epic Choir"
+                            }
+                        },
+                        {
+                            "val": "Tribal percussion, drums",
+                            "label": {
+                                "fr": "Percussions Tribales",
+                                "en": "Tribal Drums"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "hiphop": {
+            "translations": {
+                "fr": "Hip-Hop / Lo-Fi",
+                "en": "Hip-Hop / Lo-Fi"
+            },
+            "icon": "fa-headphones",
+            "fields": [
+                {
+                    "id": "subgenre",
+                    "label": {
+                        "fr": "Sous-genre",
+                        "en": "Subgenre"
+                    },
+                    "options": [
+                        {
+                            "val": "Lo-Fi hip hop beats to relax/study to",
+                            "label": {
+                                "fr": "Lo-Fi Chill (Relaxation)",
+                                "en": "Lo-Fi Chill"
+                            }
+                        },
+                        {
+                            "val": "Old school boom bap, 90s rap",
+                            "label": {
+                                "fr": "Boom Bap (Old School 90s)",
+                                "en": "Boom Bap"
+                            }
+                        },
+                        {
+                            "val": "Modern trap, heavy 808s",
+                            "label": {
+                                "fr": "Trap Moderne (Basses 808)",
+                                "en": "Modern Trap"
+                            }
+                        },
+                        {
+                            "val": "Cloud rap, dreamy and atmospheric",
+                            "label": {
+                                "fr": "Cloud Rap (Atmosphérique)",
+                                "en": "Cloud Rap"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "vocals",
+                    "label": {
+                        "fr": "Performance vocale",
+                        "en": "Vocals"
+                    },
+                    "options": [
+                        {
+                            "val": "Male rapper, aggressive flow",
+                            "label": {
+                                "fr": "Rap Homme (Agressif)",
+                                "en": "Male Rap"
+                            }
+                        },
+                        {
+                            "val": "Female rapper, smooth flow",
+                            "label": {
+                                "fr": "Rap Femme (Smooth)",
+                                "en": "Female Rap"
+                            }
+                        },
+                        {
+                            "val": "Melodic auto-tune singing",
+                            "label": {
+                                "fr": "Chant Auto-tune mélodique",
+                                "en": "Melodic Auto-tune"
+                            }
+                        },
+                        {
+                            "val": "Instrumental beats only",
+                            "label": {
+                                "fr": "Instrumental (Beats)",
+                                "en": "Instrumental"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "mood",
+                    "label": {
+                        "fr": "Humeur / Vibe",
+                        "en": "Mood"
+                    },
+                    "options": [
+                        {
+                            "val": "Chill, relaxing, late night",
+                            "label": {
+                                "fr": "Chill / Nocturne",
+                                "en": "Chill"
+                            }
+                        },
+                        {
+                            "val": "Hype, energetic, club banger",
+                            "label": {
+                                "fr": "Hype / Club",
+                                "en": "Hype"
+                            }
+                        },
+                        {
+                            "val": "Dark, moody, street vibe",
+                            "label": {
+                                "fr": "Sombre / Rue",
+                                "en": "Dark Street"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "jazz_blues": {
+            "translations": {
+                "fr": "Jazz / Blues",
+                "en": "Jazz / Blues"
+            },
+            "icon": "fa-martini-glass",
+            "fields": [
+                {
+                    "id": "subgenre",
+                    "label": {
+                        "fr": "Sous-genre",
+                        "en": "Subgenre"
+                    },
+                    "options": [
+                        {
+                            "val": "Smooth jazz, lounge",
+                            "label": {
+                                "fr": "Smooth Jazz (Lounge)",
+                                "en": "Smooth Jazz"
+                            }
+                        },
+                        {
+                            "val": "Classic Blues, 12-bar",
+                            "label": {
+                                "fr": "Blues Classique",
+                                "en": "Classic Blues"
+                            }
+                        },
+                        {
+                            "val": "Bebop, fast and complex",
+                            "label": {
+                                "fr": "Bebop (Rapide)",
+                                "en": "Bebop"
+                            }
+                        },
+                        {
+                            "val": "Noir Jazz, rainy city vibe",
+                            "label": {
+                                "fr": "Noir Jazz (Ambiance polar)",
+                                "en": "Noir Jazz"
+                            }
+                        },
+                        {
+                            "val": "Funk, groovy and tight",
+                            "label": {
+                                "fr": "Funk (Cuivres)",
+                                "en": "Funk"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "instrumentation",
+                    "label": {
+                        "fr": "Instruments",
+                        "en": "Instruments"
+                    },
+                    "options": [
+                        {
+                            "val": "Soulful saxophone solo",
+                            "label": {
+                                "fr": "Solo de Saxophone",
+                                "en": "Saxophone"
+                            }
+                        },
+                        {
+                            "val": "Muted trumpet, upright bass",
+                            "label": {
+                                "fr": "Trompette bouchée & Contrebasse",
+                                "en": "Trumpet & Bass"
+                            }
+                        },
+                        {
+                            "val": "Electric blues guitar",
+                            "label": {
+                                "fr": "Guitare Blues Électrique",
+                                "en": "Blues Guitar"
+                            }
+                        },
+                        {
+                            "val": "Acoustic piano trio",
+                            "label": {
+                                "fr": "Trio Piano Acoustique",
+                                "en": "Piano Trio"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "vocals",
+                    "label": {
+                        "fr": "Voix",
+                        "en": "Vocals"
+                    },
+                    "options": [
+                        {
+                            "val": "Gravelly male blues voice",
+                            "label": {
+                                "fr": "Voix rauque (Blues)",
+                                "en": "Gravelly Male"
+                            }
+                        },
+                        {
+                            "val": "Smooth female jazz vocalist",
+                            "label": {
+                                "fr": "Chanteuse de Jazz (Smooth)",
+                                "en": "Female Jazz"
+                            }
+                        },
+                        {
+                            "val": "Instrumental",
+                            "label": {
+                                "fr": "Instrumental",
+                                "en": "Instrumental"
                             }
                         }
                     ]
