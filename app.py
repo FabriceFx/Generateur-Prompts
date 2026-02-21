@@ -10,7 +10,6 @@ st.set_page_config(
 )
 
 # fonction de chargement des données harmonisées
-@st.cache_data
 def charger_donnees():
     # Rafraîchissement forcé du chargement des données
     base_path = os.path.dirname(__file__)
