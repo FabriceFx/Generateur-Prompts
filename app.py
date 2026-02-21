@@ -347,7 +347,7 @@ elif page == "🎵 Générateur de musique":
                         val_technique = next(opt['val'] for opt in field['options'] if opt['label']['fr'] == choice)
                         selections[field['id']] = val_technique
 
-        with col_v2:
+        with col_a2:
             with st.container(border=True):
                 st.subheader("📋 Résultat technique")
                 
